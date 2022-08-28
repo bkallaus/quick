@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/quick/static/js/main.5c846d0e.js",
+    "index.html": "/quick/index.html",
+    "main.5c846d0e.js.map": "/quick/static/js/main.5c846d0e.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.5c846d0e.js"
+  ]
+}
