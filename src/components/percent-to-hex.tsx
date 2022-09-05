@@ -1,5 +1,6 @@
 import { Box, InputAdornment, TextField, Typography } from "@mui/material";
 import React from "react";
+import NumberFormat from "react-number-format";
 
 const PercentToHex = () => {
   const [baseTenValue, setBaseTenValue] = React.useState(0);
@@ -12,12 +13,17 @@ const PercentToHex = () => {
     setBaseTenValue(base10);
 
     let hex = "";
-    if (baseTenValue < 16) {
+    if (base10 < 16) {
       hex = "0" + base10.toString(16).toUpperCase();
     } else {
       hex = base10.toString(16).toUpperCase();
     }
 
+    console.log({
+      base10,
+      hex,
+      percent,
+    });
     setHexValue(hex);
   };
 
@@ -27,7 +33,7 @@ const PercentToHex = () => {
     setBaseTenValue(base10);
 
     let hex = "";
-    if (baseTenValue < 16) {
+    if (base10 < 16) {
       hex = "0" + percent.toString(16).toUpperCase();
     } else {
       hex = percent.toString(16).toUpperCase();
