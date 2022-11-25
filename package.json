@@ -11,6 +11,7 @@
     "@types/react-dom": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-number-format": "5.1.2",
     "react-scripts": "latest",
     "typescript": "latest"
   },
@@ -33,5 +34,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }

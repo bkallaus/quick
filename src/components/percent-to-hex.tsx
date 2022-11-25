@@ -1,6 +1,6 @@
 import { Box, InputAdornment, TextField, Typography } from "@mui/material";
 import React from "react";
-import NumberFormat from "react-number-format";
+import { PatternFormat } from "react-number-format";
 
 const PercentToHex = () => {
   const [baseTenValue, setBaseTenValue] = React.useState(0);
@@ -59,18 +59,15 @@ const PercentToHex = () => {
       }}
     >
       <Typography>Percent to Hex</Typography>
-      <TextField
-        sx={{
-          width: 120,
-        }}
-        type="number"
-        label="Percent"
-        onChange={(e) => onPercentChange(Number(e.target.value))}
-        InputProps={{
-          inputMode: "numeric",
-          endAdornment: <InputAdornment position="end">%</InputAdornment>,
-        }}
+      <PatternFormat
+        style={{ width: 120 }}
         value={percentValue}
+        format={"###%"}
+        customInput={TextField}
+        type="text"
+        onValueChange={({ value }: { value: string }) =>
+          onPercentChange(Number(value))
+        }
       />
       <Typography>-</Typography>
       <TextField
