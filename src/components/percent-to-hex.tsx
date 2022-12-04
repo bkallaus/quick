@@ -1,6 +1,7 @@
-import { Box, InputAdornment, TextField, Typography } from "@mui/material";
-import React from "react";
+import { TextField, Typography } from "@mui/material";
+import CalculationContainer from "./container";
 import { PatternFormat } from "react-number-format";
+import React from "react";
 
 const PercentToHex = () => {
   const [baseTenValue, setBaseTenValue] = React.useState(0);
@@ -50,14 +51,7 @@ const PercentToHex = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 3,
-      }}
-    >
+    <CalculationContainer>
       <Typography>Percent to Hex</Typography>
       <PatternFormat
         style={{ width: 120 }}
@@ -69,7 +63,6 @@ const PercentToHex = () => {
           onPercentChange(Number(value))
         }
       />
-      <Typography>-</Typography>
       <TextField
         sx={{
           width: 120,
@@ -78,7 +71,6 @@ const PercentToHex = () => {
         value={hexValue}
         label="Hex"
       />
-      <Typography>-</Typography>
       <TextField
         sx={{
           width: 120,
@@ -88,7 +80,7 @@ const PercentToHex = () => {
         value={baseTenValue}
         label="Base 10"
       />
-    </Box>
+    </CalculationContainer>
   );
 };
 
