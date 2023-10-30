@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import PercentToHex from "./components/percent-to-hex";
 import PourOver from "./components/pour-over";
+import QrCode from "./components/qr-code";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         </Typography>
         <PercentToHex />
         <PourOver />
+        <QrCode />
       </Box>
     </Container>
   );
