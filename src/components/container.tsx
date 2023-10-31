@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
 
-// @ts-ignore
 const CalculationContainer = ({ children }): JSX.Element => {
   return (
     <Box
