@@ -1,4 +1,3 @@
-import { TextField, Typography } from "@mui/material";
 import CalculationContainer from "./container";
 import { PatternFormat } from "react-number-format";
 import React from "react";
@@ -52,34 +51,33 @@ const PercentToHex = () => {
 
   return (
     <CalculationContainer>
-      <Typography>Percent to Hex</Typography>
-      <PatternFormat
-        style={{ width: 120 }}
-        value={percentValue}
-        format={"###%"}
-        customInput={TextField}
-        type="text"
-        onValueChange={({ value }: { value: string }) =>
-          onPercentChange(Number(value))
-        }
-      />
-      <TextField
-        sx={{
-          width: 120,
-        }}
-        onChange={(e) => onHexChange(e.target.value)}
-        value={hexValue}
-        label="Hex"
-      />
-      <TextField
-        sx={{
-          width: 120,
-        }}
-        type="number"
-        onChange={(e) => onBaseTenChange(Number(e.target.value))}
-        value={baseTenValue}
-        label="Base 10"
-      />
+      <h4 style={{ width: "100%", textAlign: "center", marginBottom: 0 }}>Percent to Hex</h4>
+      <label>
+        Percent
+        <PatternFormat
+          value={percentValue}
+          format={"###%"}
+          type="text"
+          onValueChange={({ value }: { value: string }) =>
+            onPercentChange(Number(value))
+          }
+        />
+      </label>
+      <label>
+        Hex
+        <input
+          onChange={(e) => onHexChange(e.target.value)}
+          value={hexValue}
+        />
+      </label>
+      <label>
+        Base 10
+        <input
+          type="number"
+          onChange={(e) => onBaseTenChange(Number(e.target.value))}
+          value={baseTenValue}
+        />
+      </label>
     </CalculationContainer>
   );
 };

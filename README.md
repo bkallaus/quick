@@ -1,42 +1,55 @@
-# Create React App example with TypeScript
+# Quick Calculations
 
-## How to use
+A collection of handy calculation tools built with React, TypeScript, and Material UI.
 
-Download the example [or clone the repo](https://github.com/mui/material-ui):
+## Features
 
-<!-- #default-branch-switch -->
+This application calculates:
+
+*   **Percent to Hex**: Converts percentage values to Hex strings (useful for CSS opacity) and vice-versa.
+*   **Cups to mL**: Simple converter between Milliliters and Cups.
+*   **Pour Over**: A coffee ratio calculator to help you get the perfect brew (calculates water vs grounds based on ratio).
+*   **QR Code**: Generate QR codes from text input.
+
+## Tech Stack
+
+*   [React](https://reactjs.org/)
+*   [TypeScript](https://www.typescriptlang.org/)
+*   [Material UI (MUI)](https://mui.com/)
+
+## Getting Started
+
+### Prerequisites
+
+*   Node.js installed
+*   npm or yarn
+
+### Installation
+
+1.  Clone the repository.
+2.  Navigate to the project directory:
+    ```sh
+    cd quick
+    ```
+3.  Install dependencies:
+    ```sh
+    npm install
+    ```
+
+### Running Locally
+
+Start the development server:
 
 ```sh
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/create-react-app-with-typescript
-cd create-react-app-with-typescript
-```
-
-Install it and run:
-
-```sh
-npm install
 npm start
 ```
 
-or:
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-<!-- #default-branch-switch -->
+### Building for Production
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/create-react-app-with-typescript)
+Build the app for production to the `build` folder:
 
-<!-- #default-branch-switch -->
-
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/create-react-app-with-typescript)
-
-## The idea behind the example
-
-This example demonstrates how you can use [Create React App](https://github.com/facebookincubator/create-react-app) with [TypeScript](https://github.com/Microsoft/TypeScript).
-It includes `@mui/material` and its peer dependencies, including `emotion`, the default style engine in MUI v5.
-If you prefer, you can [use styled-components instead](https://mui.com/material-ui/guides/interoperability/#styled-components).
-
-## What's next?
-
-<!-- #default-branch-switch -->
-
-You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+```sh
+npm run build
+```

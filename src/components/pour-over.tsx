@@ -1,4 +1,3 @@
-import { TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { NumericFormat } from "react-number-format";
 import CalculationContainer from "./container";
@@ -20,36 +19,36 @@ const PourOver = () => {
 
   return (
     <CalculationContainer>
-      <Typography>Pour Over/Drip</Typography>
-      <NumericFormat
-        label="Ratio (mL/g)"
-        style={{ width: 120 }}
-        value={ratio}
-        allowNegative={false}
-        customInput={TextField}
-        thousandSeparator=","
-        onValueChange={(e: { value: any }) => setRatio(Number(e.value))}
-      />
-      <NumericFormat
-        label="Water (mL)"
-        style={{ width: 120 }}
-        value={mililitersOfWater}
-        customInput={TextField}
-        thousandSeparator=","
-        allowNegative={false}
-        onValueChange={(e: { value: any }) =>
-          setWaterThenGrams(Number(e.value))
-        }
-      />
-      <NumericFormat
-        label="Grounds (g)"
-        style={{ width: 120 }}
-        value={gramsOfGrounds}
-        allowNegative={false}
-        customInput={TextField}
-        thousandSeparator=","
-        onValueChange={(e) => setGramsthenWater(Number(e.value))}
-      />
+      <h4 style={{ width: "100%", textAlign: "center", marginBottom: 0 }}>Pour Over/Drip</h4>
+      <label>
+        Ratio (mL/g)
+        <NumericFormat
+          value={ratio}
+          allowNegative={false}
+          thousandSeparator=","
+          onValueChange={(e: { value: any }) => setRatio(Number(e.value))}
+        />
+      </label>
+      <label>
+        Water (mL)
+        <NumericFormat
+          value={mililitersOfWater}
+          thousandSeparator=","
+          allowNegative={false}
+          onValueChange={(e: { value: any }) =>
+            setWaterThenGrams(Number(e.value))
+          }
+        />
+      </label>
+      <label>
+        Grounds (g)
+        <NumericFormat
+          value={gramsOfGrounds}
+          allowNegative={false}
+          thousandSeparator=","
+          onValueChange={(e) => setGramsthenWater(Number(e.value))}
+        />
+      </label>
     </CalculationContainer>
   );
 };

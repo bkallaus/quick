@@ -1,4 +1,3 @@
-import { TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { NumericFormat } from "react-number-format";
 import CalculationContainer from "./container";
@@ -19,26 +18,26 @@ const MlToCups = () => {
 
   return (
     <CalculationContainer>
-      <Typography>Cups to mL</Typography>
+      <h4 style={{ width: "100%", textAlign: "center", marginBottom: 0 }}>Cups to mL</h4>
 
-      <NumericFormat
-        label="MiliLiters"
-        style={{ width: 120 }}
-        value={mililitersOfWater}
-        customInput={TextField}
-        thousandSeparator=","
-        allowNegative={false}
-        onValueChange={(e: { value: any }) => updateMililiters(Number(e.value))}
-      />
-      <NumericFormat
-        label="Cups"
-        style={{ width: 120 }}
-        value={cups}
-        allowNegative={false}
-        customInput={TextField}
-        thousandSeparator=","
-        onValueChange={(e) => updateCups(Number(e.value))}
-      />
+      <label>
+        MiliLiters
+        <NumericFormat
+          value={mililitersOfWater}
+          thousandSeparator=","
+          allowNegative={false}
+          onValueChange={(e: { value: any }) => updateMililiters(Number(e.value))}
+        />
+      </label>
+      <label>
+        Cups
+        <NumericFormat
+          value={cups}
+          allowNegative={false}
+          thousandSeparator=","
+          onValueChange={(e) => updateCups(Number(e.value))}
+        />
+      </label>
     </CalculationContainer>
   );
 };

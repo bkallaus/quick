@@ -1,23 +1,19 @@
-import { Box } from "@mui/material";
-import React from "react";
+import React, { ReactNode } from "react";
 
-const CalculationContainer = ({ children }): JSX.Element => {
+const CalculationContainer = ({ children }: { children: ReactNode }) => {
   return (
-    <Box
-      sx={{
-        alignItems: "center",
-        border: "1px solid black",
-        borderRadius: 4,
+    <article
+      style={{
         display: "flex",
         flexWrap: "wrap",
-        gap: 3,
-        width: "fit-content",
+        gap: 24,
+        alignItems: "center",
         justifyContent: "center",
-        padding: 3,
+        margin: 0,
       }}
     >
       {children}
-    </Box>
+    </article>
   );
 };
 

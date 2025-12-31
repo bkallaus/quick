@@ -1,21 +1,19 @@
-import { Box, Button, TextField, imageListClasses } from "@mui/material";
 import React, { useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import CalculationContainer from "./container";
 
 const QrCode = () => {
   const [text, setText] = useState("");
-  const ref = React.useRef();
+  // const ref = React.useRef(); // Unused
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
   };
 
   const download = () => {
-    const svg = document.getElementById("canvas");
+    const svg = document.getElementById("canvas") as HTMLCanvasElement;
     const downloadLink = document.createElement("a");
 
-    // @ts-ignore
     downloadLink.href = svg.toDataURL("image/png");
     downloadLink.download = "qrcode.png";
     document.body.appendChild(downloadLink);
@@ -25,21 +23,25 @@ const QrCode = () => {
 
   return (
     <CalculationContainer>
-      <Box
-        display="flex"
-        flexDirection={"column"}
-        gap={3}
-        alignItems={"center"}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 24,
+          alignItems: "center",
+        }}
       >
-        <TextField
-          type="text"
-          label="URL"
-          value={text}
-          onChange={handleChange}
-        />
+        <label>
+          URL
+          <input
+            type="text"
+            value={text}
+            onChange={handleChange}
+          />
+        </label>
         <QRCodeCanvas id="canvas" value={text} />
-        <Button onClick={download}>Download PNG</Button>
-      </Box>
+        <button onClick={download}>Download PNG</button>
+      </div>
     </CalculationContainer>
   );
 };
