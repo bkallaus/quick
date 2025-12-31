@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 
-const CalculationContainer = ({ children }): JSX.Element => {
+const CalculationContainer = ({ children }: { children: React.ReactNode }): React.JSX.Element => {
   return (
     <Box
       sx={{

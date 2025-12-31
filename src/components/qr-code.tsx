@@ -5,9 +5,9 @@ import CalculationContainer from "./container";
 
 const QrCode = () => {
   const [text, setText] = useState("");
-  const ref = React.useRef();
+  const ref = React.useRef(null);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
   };
 
