@@ -2,6 +2,7 @@ import PercentToHex from "./components/percent-to-hex";
 import PourOver from "./components/pour-over";
 import QrCode from "./components/qr-code";
 import MlToCups from "./components/ml-to-cups";
+import IframeTester from "./components/iframe-tester";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <MlToCups />
         <PourOver />
         <QrCode />
+        <IframeTester />
       </div>
     </main>
   );
