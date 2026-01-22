@@ -1,20 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import CalculationContainer from "./container";
 
 const QrCode = () => {
   const [text, setText] = useState("");
-  // const ref = React.useRef(); // Unused
+  const canvasRef = useRef<HTMLDivElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
   };
 
   const download = () => {
-    const svg = document.getElementById("canvas") as HTMLCanvasElement;
-    const downloadLink = document.createElement("a");
+    if (!canvasRef.current) return;
 
-    downloadLink.href = svg.toDataURL("image/png");
+    // Find the canvas element inside the wrapper
+    const canvas = canvasRef.current.querySelector("canvas");
+    if (!canvas) return;
+
+    const downloadLink = document.createElement("a");
+    downloadLink.href = canvas.toDataURL("image/png");
     downloadLink.download = "qrcode.png";
     document.body.appendChild(downloadLink);
     downloadLink.click();
@@ -32,15 +36,22 @@ const QrCode = () => {
         }}
       >
         <label>
-          URL
+          Content
           <input
             type="text"
             value={text}
             onChange={handleChange}
+            placeholder="Enter text to generate QR code"
           />
         </label>
-        <QRCodeCanvas id="canvas" value={text} />
-        <button onClick={download}>Download PNG</button>
+        {text && (
+          <div ref={canvasRef}>
+            <QRCodeCanvas value={text} size={256} level="H" />
+          </div>
+        )}
+        <button onClick={download} disabled={!text}>
+          Download PNG
+        </button>
       </div>
     </CalculationContainer>
   );
