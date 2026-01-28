@@ -43,6 +43,7 @@ const IframeTester = () => {
             width="100%"
             height="400"
             style={{ border: "1px solid #ccc", borderRadius: 4 }}
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
           />
         )}
       </div>

@@ -10,6 +10,7 @@ This application calculates:
 *   **Cups to mL**: Simple converter between Milliliters and Cups.
 *   **Pour Over**: A coffee ratio calculator to help you get the perfect brew (calculates water vs grounds based on ratio).
 *   **QR Code**: Generate QR codes from text input.
+*   **Iframe Tester**: Preview websites within an iframe by entering a URL.
 
 ## Tech Stack
 
