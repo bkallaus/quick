@@ -3,6 +3,7 @@ import PourOver from "./components/pour-over";
 import QrCode from "./components/qr-code";
 import MlToCups from "./components/ml-to-cups";
 import IframeTester from "./components/iframe-tester";
+import HslColorPicker from "./components/hsl-color-picker";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <PourOver />
         <QrCode />
         <IframeTester />
+        <HslColorPicker />
       </div>
     </main>
   );
