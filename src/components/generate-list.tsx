@@ -53,7 +53,7 @@ const ShareableList = () => {
         <h4 style={{ textAlign: "center", marginBottom: 0 }}>Generate Shareable List</h4>
 
         {/* Add Item Form */}
-        <form onSubmit={handleAddItem} style={{ display: 'flex', gap: '16px', alignItems: 'flex-end', flexWrap: 'wrap' }}>
+        <form onSubmit={handleAddItem} style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
           <label style={{ flex: 1, minWidth: '120px' }}>
             Key
             <input
