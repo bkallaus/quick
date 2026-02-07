@@ -24,7 +24,7 @@ const IframeTester = () => {
           width: "100%",
         }}
       >
-        <div style={{ display: "flex", gap: 12, alignItems: "flex-end" }}>
+        <div style={{ display: "flex", gap: 12 }}>
           <label>
             Iframe URL
             <input
@@ -34,7 +34,10 @@ const IframeTester = () => {
               placeholder="https://example.com"
             />
           </label>
-          <button onClick={handleLoad}>Load</button>
+          <label>
+            &nbsp;
+            <button onClick={handleLoad}>Load</button>
+          </label>
         </div>
         {src && (
           <iframe

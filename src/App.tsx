@@ -4,6 +4,7 @@ import QrCode from "./components/qr-code";
 import MlToCups from "./components/ml-to-cups";
 import IframeTester from "./components/iframe-tester";
 import ShareableList from "./components/shareable-list";
+import GenerateList from "./components/generate-list";
 
 export default function App() {
   return (
@@ -12,12 +13,13 @@ export default function App() {
         <h1 style={{ marginBottom: 24 }}>
           Quick Calculations
         </h1>
+        <ShareableList />
         <PercentToHex />
         <MlToCups />
         <PourOver />
         <QrCode />
         <IframeTester />
-        <ShareableList />
+        <GenerateList />
       </div>
     </main>
   );
