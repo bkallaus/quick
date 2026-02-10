@@ -35,9 +35,9 @@ const ShareableList = () => {
         <h4 style={{ textAlign: "center", marginBottom: 0 }}>Shareable List</h4>
 
         {/* List of Cards */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {items.map((item) => (
-            <article key={item.id} style={{ margin: 0, padding: '16px', minWidth: '200px', flex: '1 1 200px' }}>
+            <article key={item.id} style={{ margin: 0, padding: '16px' }}>
               <header style={{ marginBottom: '8px', fontWeight: 'bold' }}>{item.key}</header>
               <div style={{ marginBottom: '16px', wordBreak: 'break-all' }}>{item.value}</div>
               <footer style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
