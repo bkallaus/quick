@@ -1,14 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ShareableList from './shareable-list';
-
-// Mock clipboard writeText
-Object.assign(navigator, {
-  clipboard: {
-    writeText: jest.fn(),
-  },
-});
 
 // Helper to set window.location.search
 const setLocationSearch = (search: string) => {
@@ -25,6 +18,12 @@ const setLocationSearch = (search: string) => {
 describe('ShareableList', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    Object.defineProperty(navigator, 'clipboard', {
+      value: {
+        writeText: jest.fn().mockReturnValue(Promise.resolve()),
+      },
+      writable: true,
+    });
     setLocationSearch('');
   });
 
@@ -51,5 +50,19 @@ describe('ShareableList', () => {
     // After change, we expect flexDirection: 'column'
     expect(itemsContainer).toHaveStyle({ flexDirection: 'column' });
     expect(itemsContainer).not.toHaveStyle({ flexWrap: 'wrap' });
+  });
+
+  test('shows "Copied!" feedback when copy button is clicked', async () => {
+    setLocationSearch('?Key1=Value1');
+    render(<ShareableList />);
+
+    const copyButton = screen.getByText('Copy');
+
+    // Click the button
+    fireEvent.click(copyButton);
+
+    // Expect text to change
+    await waitFor(() => expect(screen.getByText('Copied!')).toBeInTheDocument());
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith('Value1');
   });
 });

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import CalculationContainer from './container';
 
 type ListItem = {
@@ -21,8 +21,25 @@ const ShareableList = () => {
     return initialItems;
   });
 
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
+  const handleCopy = (id: string, text: string) => {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        setCopiedId(id);
+        timeoutRef.current = setTimeout(() => setCopiedId(null), 2000);
+      })
+      .catch((err) => {
+        console.error('Failed to copy:', err);
+      });
   };
 
   if (items.length === 0) {
@@ -43,10 +60,11 @@ const ShareableList = () => {
               <footer style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
                 <button
                   className="secondary outline"
-                  onClick={() => handleCopy(item.value)}
+                  onClick={() => handleCopy(item.id, item.value)}
                   style={{ flex: 1, padding: '8px', fontSize: '0.8rem' }}
+                  aria-live="polite"
                 >
-                  Copy
+                  {copiedId === item.id ? "Copied!" : "Copy"}
                 </button>
               </footer>
             </article>
