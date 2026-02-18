@@ -1,14 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ShareableList from './shareable-list';
-
-// Mock clipboard writeText
-Object.assign(navigator, {
-  clipboard: {
-    writeText: jest.fn(),
-  },
-});
 
 // Helper to set window.location.search
 const setLocationSearch = (search: string) => {
@@ -25,12 +18,22 @@ const setLocationSearch = (search: string) => {
 describe('ShareableList', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+
+    // Mock navigator.clipboard
+    Object.defineProperty(navigator, 'clipboard', {
+      value: {
+        writeText: jest.fn().mockReturnValue(Promise.resolve()),
+      },
+      writable: true,
+      configurable: true,
+    });
+
     setLocationSearch('');
   });
 
   test('renders ShareableList with items from URL', () => {
     setLocationSearch('?Key1=Value1&Key2=Value2');
-    const { container } = render(<ShareableList />);
+    render(<ShareableList />);
 
     expect(screen.getByText('Shareable List')).toBeInTheDocument();
     expect(screen.getByText('Key1')).toBeInTheDocument();
@@ -38,18 +41,44 @@ describe('ShareableList', () => {
     expect(screen.getByText('Key2')).toBeInTheDocument();
     expect(screen.getByText('Value2')).toBeInTheDocument();
 
-    // Check container style
-    // The structure is CalculationContainer -> div -> h4, div(items)
-    // We want the inner div that wraps items.
-    // We can find it by checking parent of items, or explicitly by style.
-
-    // Let's find the article for Key1 and get its parent
     const item = screen.getByText('Key1').closest('article');
     const itemsContainer = item?.parentElement;
 
     expect(itemsContainer).toHaveStyle({ display: 'flex' });
-    // After change, we expect flexDirection: 'column'
     expect(itemsContainer).toHaveStyle({ flexDirection: 'column' });
     expect(itemsContainer).not.toHaveStyle({ flexWrap: 'wrap' });
+  });
+
+  test('shows Copied! feedback on click', async () => {
+    jest.useFakeTimers();
+    setLocationSearch('?TestKey=TestValue');
+    render(<ShareableList />);
+
+    const button = screen.getByText('Copy');
+    fireEvent.click(button);
+
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith('TestValue');
+
+    // Wait for the text to change
+    await screen.findByText('Copied!');
+
+    // Check class change
+    const copiedButton = screen.getByText('Copied!');
+    expect(copiedButton).toHaveClass('secondary');
+    expect(copiedButton).not.toHaveClass('outline');
+
+    // Fast forward time
+    act(() => {
+      jest.advanceTimersByTime(2000);
+    });
+
+    expect(screen.getByText('Copy')).toBeInTheDocument();
+
+    // Check class revert
+    const revertedButton = screen.getByText('Copy');
+    expect(revertedButton).toHaveClass('secondary');
+    expect(revertedButton).toHaveClass('outline');
+
+    jest.useRealTimers();
   });
 });

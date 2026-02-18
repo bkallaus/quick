@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import CalculationContainer from './container';
 
 type ListItem = {
@@ -21,8 +21,28 @@ const ShareableList = () => {
     return initialItems;
   });
 
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleCopy = (id: string, text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedId(id);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        setCopiedId(null);
+        timeoutRef.current = null;
+      }, 2000);
+    });
   };
 
   if (items.length === 0) {
@@ -42,11 +62,11 @@ const ShareableList = () => {
               <div style={{ marginBottom: '16px', wordBreak: 'break-all' }}>{item.value}</div>
               <footer style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
                 <button
-                  className="secondary outline"
-                  onClick={() => handleCopy(item.value)}
+                  className={`secondary ${copiedId === item.id ? "" : "outline"}`}
+                  onClick={() => handleCopy(item.id, item.value)}
                   style={{ flex: 1, padding: '8px', fontSize: '0.8rem' }}
                 >
-                  Copy
+                  {copiedId === item.id ? "Copied!" : "Copy"}
                 </button>
               </footer>
             </article>
