@@ -6,6 +6,24 @@ const PercentToHex = () => {
   const [baseTenValue, setBaseTenValue] = React.useState(0);
   const [hexValue, setHexValue] = React.useState("");
   const [percentValue, setPercentValue] = React.useState(0);
+  const [copied, setCopied] = React.useState(false);
+  const timeoutRef = React.useRef<any>(null);
+
+  React.useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
+  const handleCopy = () => {
+    if (!hexValue) return;
+    navigator.clipboard.writeText(hexValue);
+    setCopied(true);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
 
   const onPercentChange = (percent: number) => {
     const base10 = Math.round((percent * 255) / 100);
@@ -34,9 +52,9 @@ const PercentToHex = () => {
 
     let hex = "";
     if (base10 < 16) {
-      hex = "0" + percent.toString(16).toUpperCase();
+      hex = "0" + base10.toString(16).toUpperCase();
     } else {
-      hex = percent.toString(16).toUpperCase();
+      hex = base10.toString(16).toUpperCase();
     }
 
     setHexValue(hex);
@@ -63,13 +81,24 @@ const PercentToHex = () => {
           }
         />
       </label>
-      <label>
-        Hex
-        <input
-          onChange={(e) => onHexChange(e.target.value)}
-          value={hexValue}
-        />
-      </label>
+      <div style={{ width: "auto" }}>
+        <label htmlFor="hex-input">Hex</label>
+        <fieldset role="group" style={{ marginBottom: 0 }}>
+          <input
+            id="hex-input"
+            onChange={(e) => onHexChange(e.target.value)}
+            value={hexValue}
+            aria-label="Hex"
+          />
+          <button
+            onClick={handleCopy}
+            aria-label={copied ? "Copied" : "Copy Hex value"}
+            disabled={!hexValue}
+          >
+            {copied ? "Copied!" : "Copy"}
+          </button>
+        </fieldset>
+      </div>
       <label>
         Base 10
         <input
