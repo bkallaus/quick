@@ -6,6 +6,21 @@ const PercentToHex = () => {
   const [baseTenValue, setBaseTenValue] = React.useState(0);
   const [hexValue, setHexValue] = React.useState("");
   const [percentValue, setPercentValue] = React.useState(0);
+  const [isCopied, setIsCopied] = React.useState(false);
+  const timerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  React.useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(hexValue);
+    setIsCopied(true);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setIsCopied(false), 2000);
+  };
 
   const onPercentChange = (percent: number) => {
     const base10 = Math.round((percent * 255) / 100);
@@ -63,13 +78,24 @@ const PercentToHex = () => {
           }
         />
       </label>
-      <label>
-        Hex
-        <input
-          onChange={(e) => onHexChange(e.target.value)}
-          value={hexValue}
-        />
-      </label>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <label htmlFor="hex-input">Hex</label>
+        <fieldset role="group" style={{ marginBottom: 0 }}>
+          <input
+            id="hex-input"
+            onChange={(e) => onHexChange(e.target.value)}
+            value={hexValue}
+            aria-label="Hex Value"
+          />
+          <button
+            onClick={handleCopy}
+            aria-label={isCopied ? "Copied Hex value" : "Copy Hex value"}
+            disabled={!hexValue}
+          >
+            {isCopied ? "Copied!" : "Copy"}
+          </button>
+        </fieldset>
+      </div>
       <label>
         Base 10
         <input
