@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ShareableList from './shareable-list';
 
@@ -26,6 +26,11 @@ describe('ShareableList', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     setLocationSearch('');
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
   });
 
   test('renders ShareableList with items from URL', () => {
@@ -51,5 +56,33 @@ describe('ShareableList', () => {
     // After change, we expect flexDirection: 'column'
     expect(itemsContainer).toHaveStyle({ flexDirection: 'column' });
     expect(itemsContainer).not.toHaveStyle({ flexWrap: 'wrap' });
+  });
+
+  test('shows feedback when copy button is clicked', async () => {
+    setLocationSearch('?Key1=Value1');
+    render(<ShareableList />);
+
+    const copyButton = screen.getByText('Copy');
+
+    // Initial state
+    expect(copyButton).toBeInTheDocument();
+
+    // Click button
+    fireEvent.click(copyButton);
+
+    // Check clipboard call
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith('Value1');
+
+    // Check feedback
+    // Since state update is async, findByText is safer, but with fake timers we might need act()
+    expect(await screen.findByText('Copied!')).toBeInTheDocument();
+
+    // Fast forward timer to check it reverts
+    act(() => {
+      jest.advanceTimersByTime(2000);
+    });
+
+    expect(screen.getByText('Copy')).toBeInTheDocument();
+    expect(screen.queryByText('Copied!')).not.toBeInTheDocument();
   });
 });
