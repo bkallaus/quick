@@ -6,12 +6,13 @@ import IframeTester from "./components/iframe-tester";
 import ShareableList from "./components/shareable-list";
 import GenerateList from "./components/generate-list";
 import SideNav from "./components/side-nav";
+import "./App.css";
 
 export default function App() {
   return (
-    <div className="container" style={{ display: 'flex', alignItems: 'flex-start', gap: '2rem', padding: '2rem 0' }}>
+    <div className="container app-layout">
       <SideNav />
-      <main style={{ flex: 1, minWidth: 0 }}>
+      <main className="main-content">
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <h1 style={{ marginBottom: 24 }}>
             Quick Calculations

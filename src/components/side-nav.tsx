@@ -2,13 +2,7 @@ import React from 'react';
 
 const SideNav = () => {
   return (
-    <aside style={{
-        position: 'sticky',
-        top: '1rem',
-        alignSelf: 'flex-start',
-        minWidth: '200px',
-        padding: '1rem',
-    }}>
+    <aside className="side-nav">
       <nav>
         <ul>
           <li><a href="#shareable-list">Shareable List</a></li>
