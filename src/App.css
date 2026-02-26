@@ -25,9 +25,6 @@
   }
 
   .side-nav {
-    position: static;
-    width: 100%;
-    min-width: auto;
-    margin-bottom: 2rem;
+    display: none;
   }
 }
