@@ -20,24 +20,26 @@ const MlToCups = () => {
     <CalculationContainer>
       <h4 style={{ width: "100%", textAlign: "center", marginBottom: 0 }}>Cups to mL</h4>
 
-      <label>
-        MiliLiters
-        <NumericFormat
-          value={mililitersOfWater}
-          thousandSeparator=","
-          allowNegative={false}
-          onValueChange={(e: { value: any }) => updateMililiters(Number(e.value))}
-        />
-      </label>
-      <label>
-        Cups
-        <NumericFormat
-          value={cups}
-          allowNegative={false}
-          thousandSeparator=","
-          onValueChange={(e) => updateCups(Number(e.value))}
-        />
-      </label>
+      <div style={{ width: "100%", display: "flex", gap: "16px" }}>
+        <label style={{ flex: 1 }}>
+          MiliLiters
+          <NumericFormat
+            value={mililitersOfWater}
+            thousandSeparator=","
+            allowNegative={false}
+            onValueChange={(e: { value: any }) => updateMililiters(Number(e.value))}
+          />
+        </label>
+        <label style={{ flex: 1 }}>
+          Cups
+          <NumericFormat
+            value={cups}
+            allowNegative={false}
+            thousandSeparator=","
+            onValueChange={(e) => updateCups(Number(e.value))}
+          />
+        </label>
+      </div>
     </CalculationContainer>
   );
 };

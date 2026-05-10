@@ -15,6 +15,7 @@ const IframeTester = () => {
 
   return (
     <CalculationContainer>
+      <h4 style={{ width: "100%", textAlign: "center", marginBottom: 0 }}>Iframe Tester</h4>
       <div
         style={{
           display: "flex",
@@ -24,20 +25,18 @@ const IframeTester = () => {
           width: "100%",
         }}
       >
-        <div style={{ display: "flex", gap: 12 }}>
-          <label>
+        <div style={{ display: "flex", gap: "16px", width: "100%", alignItems: "flex-end" }}>
+          <label style={{ flex: 1 }}>
             Iframe URL
             <input
               type="text"
               value={url}
               onChange={handleChange}
               placeholder="https://example.com"
+              style={{ marginBottom: 0 }}
             />
           </label>
-          <label>
-            &nbsp;
-            <button onClick={handleLoad}>Load</button>
-          </label>
+          <button onClick={handleLoad} style={{ width: "auto", marginBottom: 0 }}>Load</button>
         </div>
         {src && (
           <iframe
