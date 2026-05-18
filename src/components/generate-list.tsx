@@ -53,7 +53,7 @@ const ShareableList = () => {
         <h4 style={{ textAlign: "center", marginBottom: 0 }}>Generate Shareable List</h4>
 
         {/* Add Item Form */}
-        <form onSubmit={handleAddItem} style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+        <form onSubmit={handleAddItem} style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-end' }}>
           <label style={{ flex: 1, minWidth: '120px' }}>
             Key
             <input
@@ -62,6 +62,7 @@ const ShareableList = () => {
               onChange={(e) => setNewKey(e.target.value)}
               placeholder="e.g. Username"
               required
+              style={{ marginBottom: 0 }}
             />
           </label>
           <label style={{ flex: 1, minWidth: '120px' }}>
@@ -72,12 +73,10 @@ const ShareableList = () => {
               onChange={(e) => setNewValue(e.target.value)}
               placeholder="e.g. admin"
               required
+              style={{ marginBottom: 0 }}
             />
           </label>
-          <label style={{ width: 'auto' }}>
-            &nbsp;
-            <button type="submit" style={{ width: 'auto', marginBottom: 'var(--spacing)' }}>Add</button>
-          </label>
+          <button type="submit" style={{ width: 'auto', marginBottom: 0 }}>Add</button>
         </form>
       </div>
     </CalculationContainer>

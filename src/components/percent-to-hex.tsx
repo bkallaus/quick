@@ -19,11 +19,6 @@ const PercentToHex = () => {
       hex = base10.toString(16).toUpperCase();
     }
 
-    console.log({
-      base10,
-      hex,
-      percent,
-    });
     setHexValue(hex);
   };
 
@@ -52,32 +47,34 @@ const PercentToHex = () => {
   return (
     <CalculationContainer>
       <h4 style={{ width: "100%", textAlign: "center", marginBottom: 0 }}>Percent to Hex</h4>
-      <label>
-        Percent
-        <PatternFormat
-          value={percentValue}
-          format={"###%"}
-          type="text"
-          onValueChange={({ value }: { value: string }) =>
-            onPercentChange(Number(value))
-          }
-        />
-      </label>
-      <label>
-        Hex
-        <input
-          onChange={(e) => onHexChange(e.target.value)}
-          value={hexValue}
-        />
-      </label>
-      <label>
-        Base 10
-        <input
-          type="number"
-          onChange={(e) => onBaseTenChange(Number(e.target.value))}
-          value={baseTenValue}
-        />
-      </label>
+      <div style={{ width: "100%", display: "flex", gap: "16px" }}>
+        <label style={{ flex: 1 }}>
+          Percent
+          <PatternFormat
+            value={percentValue}
+            format={"###%"}
+            type="text"
+            onValueChange={({ value }: { value: string }) =>
+              onPercentChange(Number(value))
+            }
+          />
+        </label>
+        <label style={{ flex: 1 }}>
+          Hex
+          <input
+            onChange={(e) => onHexChange(e.target.value)}
+            value={hexValue}
+          />
+        </label>
+        <label style={{ flex: 1 }}>
+          Base 10
+          <input
+            type="number"
+            onChange={(e) => onBaseTenChange(Number(e.target.value))}
+            value={baseTenValue}
+          />
+        </label>
+      </div>
     </CalculationContainer>
   );
 };

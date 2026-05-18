@@ -20,35 +20,37 @@ const PourOver = () => {
   return (
     <CalculationContainer>
       <h4 style={{ width: "100%", textAlign: "center", marginBottom: 0 }}>Pour Over/Drip</h4>
-      <label>
-        Ratio (mL/g)
-        <NumericFormat
-          value={ratio}
-          allowNegative={false}
-          thousandSeparator=","
-          onValueChange={(e: { value: any }) => setRatio(Number(e.value))}
-        />
-      </label>
-      <label>
-        Water (mL)
-        <NumericFormat
-          value={mililitersOfWater}
-          thousandSeparator=","
-          allowNegative={false}
-          onValueChange={(e: { value: any }) =>
-            setWaterThenGrams(Number(e.value))
-          }
-        />
-      </label>
-      <label>
-        Grounds (g)
-        <NumericFormat
-          value={gramsOfGrounds}
-          allowNegative={false}
-          thousandSeparator=","
-          onValueChange={(e) => setGramsthenWater(Number(e.value))}
-        />
-      </label>
+      <div style={{ width: "100%", display: "flex", gap: "16px" }}>
+        <label style={{ flex: 1 }}>
+          Ratio (mL/g)
+          <NumericFormat
+            value={ratio}
+            allowNegative={false}
+            thousandSeparator=","
+            onValueChange={(e: { value: any }) => setRatio(Number(e.value))}
+          />
+        </label>
+        <label style={{ flex: 1 }}>
+          Water (mL)
+          <NumericFormat
+            value={mililitersOfWater}
+            thousandSeparator=","
+            allowNegative={false}
+            onValueChange={(e: { value: any }) =>
+              setWaterThenGrams(Number(e.value))
+            }
+          />
+        </label>
+        <label style={{ flex: 1 }}>
+          Grounds (g)
+          <NumericFormat
+            value={gramsOfGrounds}
+            allowNegative={false}
+            thousandSeparator=","
+            onValueChange={(e) => setGramsthenWater(Number(e.value))}
+          />
+        </label>
+      </div>
     </CalculationContainer>
   );
 };
