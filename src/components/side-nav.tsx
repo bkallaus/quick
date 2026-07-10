@@ -12,6 +12,7 @@ const SideNav = () => {
           <li><a href="#qr-code">QR Code</a></li>
           <li><a href="#iframe-tester">Iframe Tester</a></li>
           <li><a href="#generate-list">Generate List</a></li>
+          <li><a href="#tip-calculator">Tip Calculator</a></li>
         </ul>
       </nav>
     </aside>
