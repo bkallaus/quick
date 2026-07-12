@@ -14,6 +14,7 @@ describe('SideNav', () => {
     expect(screen.getByText('QR Code')).toBeInTheDocument();
     expect(screen.getByText('Iframe Tester')).toBeInTheDocument();
     expect(screen.getByText('Generate List')).toBeInTheDocument();
+    expect(screen.getByText('Base64 Encoder/Decoder')).toBeInTheDocument();
   });
 
   test('links have correct href attributes', () => {
@@ -26,5 +27,6 @@ describe('SideNav', () => {
     expect(screen.getByText('QR Code').closest('a')).toHaveAttribute('href', '#qr-code');
     expect(screen.getByText('Iframe Tester').closest('a')).toHaveAttribute('href', '#iframe-tester');
     expect(screen.getByText('Generate List').closest('a')).toHaveAttribute('href', '#generate-list');
+    expect(screen.getByText('Base64 Encoder/Decoder').closest('a')).toHaveAttribute('href', '#base64-encoder');
   });
 });

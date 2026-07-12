@@ -5,6 +5,7 @@ import MlToCups from "./components/ml-to-cups";
 import IframeTester from "./components/iframe-tester";
 import ShareableList from "./components/shareable-list";
 import GenerateList from "./components/generate-list";
+import Base64Encoder from "./components/base64-encoder";
 import SideNav from "./components/side-nav";
 import "./App.css";
 
@@ -24,6 +25,7 @@ export default function App() {
           <div id="qr-code"><QrCode /></div>
           <div id="iframe-tester"><IframeTester /></div>
           <div id="generate-list"><GenerateList /></div>
+          <div id="base64-encoder"><Base64Encoder /></div>
         </div>
       </main>
     </div>
