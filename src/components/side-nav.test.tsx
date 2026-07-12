@@ -10,6 +10,7 @@ describe('SideNav', () => {
     expect(screen.getByText('Shareable List')).toBeInTheDocument();
     expect(screen.getByText('Percent to Hex')).toBeInTheDocument();
     expect(screen.getByText('Ml to Cups')).toBeInTheDocument();
+    expect(screen.getByText('Discount Calculator')).toBeInTheDocument();
     expect(screen.getByText('Pour Over')).toBeInTheDocument();
     expect(screen.getByText('QR Code')).toBeInTheDocument();
     expect(screen.getByText('Iframe Tester')).toBeInTheDocument();
@@ -22,6 +23,7 @@ describe('SideNav', () => {
     expect(screen.getByText('Shareable List').closest('a')).toHaveAttribute('href', '#shareable-list');
     expect(screen.getByText('Percent to Hex').closest('a')).toHaveAttribute('href', '#percent-to-hex');
     expect(screen.getByText('Ml to Cups').closest('a')).toHaveAttribute('href', '#ml-to-cups');
+    expect(screen.getByText('Discount Calculator').closest('a')).toHaveAttribute('href', '#discount-calculator');
     expect(screen.getByText('Pour Over').closest('a')).toHaveAttribute('href', '#pour-over');
     expect(screen.getByText('QR Code').closest('a')).toHaveAttribute('href', '#qr-code');
     expect(screen.getByText('Iframe Tester').closest('a')).toHaveAttribute('href', '#iframe-tester');

@@ -8,6 +8,7 @@ const SideNav = () => {
           <li><a href="#shareable-list">Shareable List</a></li>
           <li><a href="#percent-to-hex">Percent to Hex</a></li>
           <li><a href="#ml-to-cups">Ml to Cups</a></li>
+          <li><a href="#discount-calculator">Discount Calculator</a></li>
           <li><a href="#pour-over">Pour Over</a></li>
           <li><a href="#qr-code">QR Code</a></li>
           <li><a href="#iframe-tester">Iframe Tester</a></li>

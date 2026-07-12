@@ -5,6 +5,7 @@ import MlToCups from "./components/ml-to-cups";
 import IframeTester from "./components/iframe-tester";
 import ShareableList from "./components/shareable-list";
 import GenerateList from "./components/generate-list";
+import DiscountCalculator from "./components/discount-calculator";
 import SideNav from "./components/side-nav";
 import "./App.css";
 
@@ -20,6 +21,7 @@ export default function App() {
           <div id="shareable-list"><ShareableList /></div>
           <div id="percent-to-hex"><PercentToHex /></div>
           <div id="ml-to-cups"><MlToCups /></div>
+          <div id="discount-calculator"><DiscountCalculator /></div>
           <div id="pour-over"><PourOver /></div>
           <div id="qr-code"><QrCode /></div>
           <div id="iframe-tester"><IframeTester /></div>

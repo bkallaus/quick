@@ -1,0 +1,19 @@
+PR Title: feat: Discount Calculator
+The Problem Solved: Users lacked a way to easily calculate the final price and savings of an item given its original price and a discount percentage. This provides a quick, interactive tool to compute those values instantly.
+Visuals: [Verification Screenshot](/home/jules/verification/screenshots/verification.png)
+Implementation Journey:
+- Set up `src/components/discount-calculator.tsx` using `CalculationContainer` and `NumericFormat` for controlled input handling.
+- Wrote `src/components/discount-calculator.test.tsx` to verify calculations updating accurately based on user input.
+- Rendered `<DiscountCalculator />` in `App.tsx` and linked it in `SideNav`.
+- Ran unit tests and validated via Playwright frontend screenshot automation.
+Tradeoffs & Assumptions:
+- Brainstormed 3 approaches (Standard text input/output, Minimalist dynamic input, Creative slider-based UI).
+- Selected the 'Minimalist' approach to align with the 'Simplicity First' requirement, updating results dynamically as the user types instead of requiring a submit button.
+- Assumed undefined input states should default to 0 for fallback calculation safety without throwing errors.
+Testing Instructions:
+1. Run `npm start`.
+2. Click 'Discount Calculator' in the side navigation.
+3. Type '200' in the Original Price box.
+4. Type '30' in the Discount % box.
+5. Verify Final Price reads '40.00' and Savings reads '0.00'.
+Action Item: git push origin feature/discount-calculator && gh pr create --title 'feat: Add Discount Calculator' --body-file /path/to/this/manifest
