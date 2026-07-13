@@ -13,6 +13,7 @@ const SideNav = () => {
           <li><a href="#iframe-tester">Iframe Tester</a></li>
           <li><a href="#generate-list">Generate List</a></li>
           <li><a href="#base64-encoder">Base64 Encoder/Decoder</a></li>
+          <li><a href="#temperature-converter">Temperature Converter</a></li>
         </ul>
       </nav>
     </aside>

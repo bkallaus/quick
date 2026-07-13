@@ -1,0 +1,52 @@
+# Nova Internal Logs
+
+## Phase 2: Think Before Coding
+*   **Assumptions Explicitly Stated:** No explicit feature was requested by the user, only the instruction to find and build a "net-new functionality" and avoid duplication.
+*   **Handling Multiple Interpretations:** I must choose a new calculation tool that fits the "Quick Calculations" theme. Options: Temperature Converter, Salary to Hourly, Aspect Ratio Calculator. I will choose Temperature Converter as it is universally useful and easy to verify.
+*   **Forced Variance (Lateral Thinking) - 3 Approaches for Temperature Converter:**
+    1.  *Standard:* 3 number inputs (Celsius, Fahrenheit, Kelvin). Typing in one instantly updates the other two.
+    2.  *Minimalist:* 1 input field and two select dropdowns (convert From -> To).
+    3.  *Lateral/Creative:* A visual, draggable thermometer.
+    *Decision:* Approach 1 (Standard) is the simplest, provides the best UX (no clicking dropdowns), and aligns perfectly with "Simplicity First".
+
+## Phase 3: Simplicity First
+*   I will write a single component with 3 inputs managed by one state (holding the value in Celsius as the source of truth, deriving F and K).
+*   No external libraries beyond React.
+
+## Phase 5: Goal-Driven Execution
+*   Tests were written and they all pass.
+*   Code Review noted two issues:
+    1.  The `celsius` state itself isn't formatted when derived from Fahrenheit/Kelvin, leading to long decimals.
+    2.  `npm_output.log` and `nova-logs.txt` shouldn't be committed or should be gitignored.
+*   I will fix the formatting issue in `src/components/temperature-converter.tsx` and ensure the logs are not committed.
+
+PR Title: feat: Temperature Converter
+
+The Problem Solved: Added a new temperature converter tool to convert between Celsius, Fahrenheit, and Kelvin seamlessly.
+
+Visuals:
+- [Screenshot](/home/jules/verification/screenshots/temp_fahrenheit_filled.png)
+- [Video](/home/jules/verification/videos/d797c5ba8702ea05d2f456099ddc235d.webm)
+
+Implementation Journey:
+- Verified no pre-existing feature branches.
+- Designed component to keep Celsius as the source of truth, deriving F and K inputs.
+- Implemented `TemperatureConverter` in `src/components/temperature-converter.tsx`.
+- Implemented unit tests using React Testing Library.
+- Added to `App.tsx` and `side-nav.tsx`.
+- Verified component visually with Playwright.
+- Fixed a bug where deriving Celsius from Fahrenheit or Kelvin would result in unformatted strings (e.g. 37.77777777777778).
+
+Tradeoffs & Assumptions:
+- I chose the Standard 3-input approach because it is the simplest to use and conforms to the project's layout with fieldsets.
+- I assumed Celsius was the best source of truth, deriving other values based on it.
+
+Testing Instructions:
+1. Run `npm start`.
+2. Navigate to the `Temperature Converter` section.
+3. Type a value into Celsius. Check that Fahrenheit and Kelvin update correctly.
+4. Type a value into Fahrenheit. Check that Celsius and Kelvin update correctly.
+5. Verify values are rounded to 2 decimal places.
+
+Action Item:
+`git push -u origin feature/temperature-converter`
