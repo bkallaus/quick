@@ -15,6 +15,7 @@ describe('SideNav', () => {
     expect(screen.getByText('Iframe Tester')).toBeInTheDocument();
     expect(screen.getByText('Generate List')).toBeInTheDocument();
     expect(screen.getByText('Base64 Encoder/Decoder')).toBeInTheDocument();
+    expect(screen.getByText('Password Generator')).toBeInTheDocument();
   });
 
   test('links have correct href attributes', () => {
@@ -28,5 +29,6 @@ describe('SideNav', () => {
     expect(screen.getByText('Iframe Tester').closest('a')).toHaveAttribute('href', '#iframe-tester');
     expect(screen.getByText('Generate List').closest('a')).toHaveAttribute('href', '#generate-list');
     expect(screen.getByText('Base64 Encoder/Decoder').closest('a')).toHaveAttribute('href', '#base64-encoder');
+    expect(screen.getByText('Password Generator').closest('a')).toHaveAttribute('href', '#password-generator');
   });
 });
