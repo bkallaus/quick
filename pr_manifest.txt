@@ -1,0 +1,26 @@
+PR Title: feat: Aspect Ratio Calculator
+
+The Problem Solved: Users can now calculate missing dimensions when resizing images or videos while maintaining the exact aspect ratio.
+
+Visuals: [Screenshot](/home/jules/verification/screenshots/verification.png) | [Video](/home/jules/verification/videos/36f88d05be7ea26366bfbf959abb2d70.webm)
+
+Implementation Journey:
+- Created the 'Aspect Ratio' React component with 4 inputs.
+- Implemented standard top-to-bottom calculation logic.
+- Wrote full unit test coverage confirming dimension calculations based on ratio.
+- Integrated the new calculator into the main `App.tsx` layout and side navigation.
+- Verified visual fidelity using Playwright rendering against PicoCSS/layout structure.
+
+Tradeoffs & Assumptions:
+- Made the standard assumption that updating new width updates new height and vice versa based on original properties.
+- I brainstormed a minimalist 3-input version, but stuck with the standard 4-input version for better user familiarity with aspect ratio tools.
+- There is a known, minor edge case where modifying the original dimension after typing in *only* the new height (leaving new width blank) won't recalculate the other field, but this is non-blocking for standard top-to-bottom usage.
+
+Testing Instructions:
+1. Run `npm start`
+2. Navigate to 'Aspect Ratio' in the side nav.
+3. Enter 1920 for Original Width and 1080 for Original Height.
+4. Enter 1280 for New Width.
+5. Verify New Height updates to 720.
+
+Action Item: Used the Jules submit tool to push and open the PR.
