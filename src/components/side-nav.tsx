@@ -14,6 +14,7 @@ const SideNav = () => {
           <li><a href="#generate-list">Generate List</a></li>
           <li><a href="#base64-encoder">Base64 Encoder/Decoder</a></li>
           <li><a href="#timestamp-converter">Timestamp Converter</a></li>
+          <li><a href="#number-base-converter">Number Base Converter</a></li>
         </ul>
       </nav>
     </aside>
