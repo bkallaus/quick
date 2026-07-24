@@ -7,6 +7,7 @@ import ShareableList from "./components/shareable-list";
 import GenerateList from "./components/generate-list";
 import Base64Encoder from "./components/base64-encoder";
 import TimestampConverter from "./components/timestamp-converter";
+import JwtDecoder from "./components/jwt-decoder";
 import SideNav from "./components/side-nav";
 import "./App.css";
 
@@ -28,6 +29,7 @@ export default function App() {
           <div id="generate-list"><GenerateList /></div>
           <div id="base64-encoder"><Base64Encoder /></div>
           <div id="timestamp-converter"><TimestampConverter /></div>
+          <div id="jwt-decoder"><JwtDecoder /></div>
         </div>
       </main>
     </div>
