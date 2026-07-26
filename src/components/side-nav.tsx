@@ -13,6 +13,7 @@ const SideNav = () => {
           <li><a href="#iframe-tester">Iframe Tester</a></li>
           <li><a href="#generate-list">Generate List</a></li>
           <li><a href="#base64-encoder">Base64 Encoder/Decoder</a></li>
+          <li><a href="#password-generator">Password Generator</a></li>
           <li><a href="#timestamp-converter">Timestamp Converter</a></li>
           <li><a href="#unix-permissions">Unix Permissions</a></li>
           <li><a href="#px-to-rem">Px to Rem</a></li>

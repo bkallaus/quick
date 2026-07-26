@@ -6,6 +6,7 @@ import IframeTester from "./components/iframe-tester";
 import ShareableList from "./components/shareable-list";
 import GenerateList from "./components/generate-list";
 import Base64Encoder from "./components/base64-encoder";
+import PasswordGenerator from "./components/password-generator";
 import TimestampConverter from "./components/timestamp-converter";
 import UnixPermissions from "./components/unix-permissions";
 import PxToRem from "./components/px-to-rem";
@@ -29,6 +30,7 @@ export default function App() {
           <div id="iframe-tester"><IframeTester /></div>
           <div id="generate-list"><GenerateList /></div>
           <div id="base64-encoder"><Base64Encoder /></div>
+          <div id="password-generator"><PasswordGenerator /></div>
           <div id="timestamp-converter"><TimestampConverter /></div>
           <div id="unix-permissions"><UnixPermissions /></div>
           <div id="px-to-rem"><PxToRem /></div>
