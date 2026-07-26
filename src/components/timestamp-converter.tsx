@@ -69,11 +69,11 @@ const TimestampConverter = () => {
       <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "8px", marginTop: "16px" }}>
         <label>
           Local Time
-          <input type="text" readOnly value={localTime} style={{ backgroundColor: "#f5f5f5" }} />
+          <input type="text" readOnly value={localTime} />
         </label>
         <label>
           UTC Time
-          <input type="text" readOnly value={utcTime} style={{ backgroundColor: "#f5f5f5" }} />
+          <input type="text" readOnly value={utcTime} />
         </label>
       </div>
     </CalculationContainer>
