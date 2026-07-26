@@ -15,6 +15,7 @@ const SideNav = () => {
           <li><a href="#base64-encoder">Base64 Encoder/Decoder</a></li>
           <li><a href="#timestamp-converter">Timestamp Converter</a></li>
           <li><a href="#unix-permissions">Unix Permissions</a></li>
+          <li><a href="#px-to-rem">Px to Rem</a></li>
         </ul>
       </nav>
     </aside>
