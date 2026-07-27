@@ -5,11 +5,18 @@ import PasswordGenerator from './password-generator';
 
 describe('PasswordGenerator', () => {
   beforeEach(() => {
-    // Mock crypto to ensure consistent behavior in tests if needed
-    // However, the component falls back to Math.random() if window.crypto is absent.
-    // Jest's JSDOM usually lacks crypto.getRandomValues, so it falls back to Math.random.
-    // We mock it for explicit control if we want to test that branch.
-    // For simplicity, we just test the resulting length and character composition.
+    // Clear localStorage before each test
+    localStorage.clear();
+    // Mock clipboard API
+    Object.assign(navigator, {
+      clipboard: {
+        writeText: jest.fn().mockImplementation(() => Promise.resolve()),
+      },
+    });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   test('renders generator UI', () => {
@@ -22,6 +29,7 @@ describe('PasswordGenerator', () => {
     expect(screen.getByLabelText('Symbols')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Generate Password' })).toBeInTheDocument();
     expect(screen.getByLabelText('Generated Password')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Copy' })).toBeInTheDocument();
   });
 
   test('generates password with default length 16', () => {
@@ -63,5 +71,50 @@ describe('PasswordGenerator', () => {
 
     const output = screen.getByLabelText('Generated Password') as HTMLInputElement;
     expect(output.value).toBe('');
+  });
+
+  test('copies password to clipboard', async () => {
+    render(<PasswordGenerator />);
+    const button = screen.getByRole('button', { name: 'Generate Password' });
+    fireEvent.click(button);
+
+    const output = screen.getByLabelText('Generated Password') as HTMLInputElement;
+    // We expect multiple 'Copy' buttons (one for main, one for the history item we just generated)
+    const copyButtons = screen.getAllByRole('button', { name: 'Copy' });
+    const copyButton = copyButtons[0]; // main output copy button is first
+
+    fireEvent.click(copyButton);
+
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(output.value);
+  });
+
+  test('saves generated password to history and displays it', () => {
+    render(<PasswordGenerator />);
+    const button = screen.getByRole('button', { name: 'Generate Password' });
+
+    fireEvent.click(button);
+    const output1 = screen.getByLabelText('Generated Password') as HTMLInputElement;
+    const pass1 = output1.value;
+
+    fireEvent.click(button);
+    const output2 = screen.getByLabelText('Generated Password') as HTMLInputElement;
+    const pass2 = output2.value;
+
+    expect(screen.getByText('History (Last 30 Days)')).toBeInTheDocument();
+
+    // We should have the current password in the main output, and two in history (most recent first)
+    const historyInputs = screen.getAllByRole('textbox').filter(el => el !== output2);
+    // screen.getAllByRole('textbox') gets all text inputs.
+    // 0 is the main Generated Password input. The rest are history.
+    const allInputs = screen.getAllByRole('textbox');
+    expect(allInputs[0]).toHaveValue(pass2);
+    expect(allInputs[1]).toHaveValue(pass2);
+    expect(allInputs[2]).toHaveValue(pass1);
+
+    // Verify localStorage
+    const stored = JSON.parse(localStorage.getItem('passwordHistory') || '[]');
+    expect(stored).toHaveLength(2);
+    expect(stored[0].password).toBe(pass2);
+    expect(stored[1].password).toBe(pass1);
   });
 });
