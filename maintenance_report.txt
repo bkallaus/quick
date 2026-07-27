@@ -1,0 +1,5 @@
+**Maintenance Report**
+- **Target:** `shell-quote` (1.8.4 -> 1.10.0)
+- **Rationale:** Security patch for quadratic-complexity Denial of Service vulnerability
+- **Verification:** Confirmed via lockfile and successful `npm run build`.
+- **Changelog Link:** https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes
