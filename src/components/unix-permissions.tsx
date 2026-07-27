@@ -139,7 +139,7 @@ const UnixPermissions = () => {
               type="text"
               value={getSymbolic(permissions)}
               readOnly
-              style={{ marginBottom: 0, backgroundColor: '#f0f0f0', cursor: 'not-allowed' }}
+              style={{ marginBottom: 0, cursor: 'not-allowed' }}
             />
           </label>
         </div>
