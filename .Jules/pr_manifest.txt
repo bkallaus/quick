@@ -1,0 +1,29 @@
+
+PR Title: feat: Temperature Converter
+
+The Problem Solved: Adds a utility to convert between Celsius, Fahrenheit, and Kelvin in real time.
+
+Visuals: [Screenshot](/home/jules/verification/screenshots/temperature-converter.png)
+
+Implementation Journey:
+- Logged assumptions and architectural approaches.
+- Created `TemperatureConverter` component.
+- Wrote unit tests for the component.
+- Integrated the component into `App.tsx` layout.
+- Added navigation link in `SideNav`.
+- Ran test suite to verify no regressions.
+- Created Playwright script to verify UI visually.
+
+Tradeoffs & Assumptions:
+- Assumption: Simple synchronization of 3 inputs is best.
+- Alternatives: Minimalist (2 inputs), Lateral (Slider).
+- Chose standard 3-input approach for simplicity and maximum utility.
+
+Testing Instructions:
+1. Run `npm start`.
+2. Open `http://localhost:3000/quick/`.
+3. Scroll to "Temperature Converter".
+4. Type values into Celsius, Fahrenheit, or Kelvin inputs.
+5. Verify the other inputs update accordingly.
+
+Action Item: Used the submit tool to open PR.
