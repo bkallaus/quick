@@ -1,0 +1,26 @@
+PR Title: feat: Color Contrast Checker
+
+The Problem Solved: Adds a net-new Color Contrast Checker utility for developers to easily verify if text and background colors meet WCAG AA and AAA accessibility standards.
+
+Visuals:
+- Screenshot captured in /home/jules/verification/color_contrast.png during verification.
+
+Implementation Journey:
+- Set up a new React component (`src/components/color-contrast.tsx`) to handle hex input, calculate relative luminance, and determine WCAG pass/fail metrics.
+- Integrated the component into the main application layout (`src/App.tsx`) and navigation sidebar (`src/components/side-nav.tsx`).
+- Created unit tests (`src/components/color-contrast.test.tsx`) to verify mathematical calculations and DOM updates.
+- Refined the UI of the native color picker input based on code review to ensure visibility on white backgrounds and handle 3-digit hex strings gracefully.
+- Re-ran the test suite to ensure all assertions pass successfully.
+
+Tradeoffs & Assumptions:
+- Forced Variance: Before writing code, three features were considered (Aspect Ratio Calculator, Word Counter, Color Contrast Checker). The Color Contrast Checker was selected as the most useful for the target developer audience.
+- Assumption: The user did not specify a feature, so autonomous selection was required.
+- Tradeoff: Standard HTML `<input type="color">` was utilized rather than adding a heavy third-party color picker library to maintain the Simplicity First mandate.
+
+Testing Instructions:
+1. Pull the branch `feature/color-contrast`.
+2. Run `npm install` and `npm start`.
+3. Open `http://localhost:3000/quick` and navigate to the "Color Contrast Checker" at the bottom of the page.
+4. Input valid hex codes into the foreground and background fields (or use the native color picker) and observe the real-time contrast ratio update and the WCAG status table.
+
+Action Item: `git push origin feature/color-contrast`
