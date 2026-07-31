@@ -1,0 +1,28 @@
+PR Title: feat: Aspect Ratio Calculator
+
+The Problem Solved: Adds a minimalist, reactive Aspect Ratio Calculator component to the existing suite of tools. This allows users to input original dimensions and calculate missing new dimensions based on the ratio.
+
+Visuals: ![Aspect Ratio UI](https://github.com/bkallaus/quick/blob/feature/aspect-ratio/screenshot.png) (Conceptual link, see captured screenshot in execution logs)
+
+Implementation Journey:
+* Verified no existing PRs/branches for aspect ratio.
+* Designed and implemented `src/components/aspect-ratio.tsx` keeping to the absolute minimum code and matching existing project layout.
+* Added comprehensive tests in `aspect-ratio.test.tsx` verifying original vs new dimension recalculations.
+* Integrated the new component into `App.tsx` and linked it in `side-nav.tsx`.
+* Ran full test suite to guarantee zero regressions.
+* Verified UI renders correctly with Playwright script automation.
+
+Tradeoffs & Assumptions:
+* Evaluated 3 approaches:
+  1. Standard: Full form with validation errors and submit button.
+  2. Minimalist (Chosen): Instant recalculation on keystroke, native HTML number inputs.
+  3. Lateral: Drag-and-drop crop box to visually represent ratio.
+* Decided on the Minimalist approach as it perfectly aligns with the existing utility-first, instantaneous nature of the other "Quick Calculations". No submit buttons, no complex state—just reactive inputs.
+
+Testing Instructions:
+1. `npm start`
+2. Navigate to `http://localhost:3000/quick#aspect-ratio`
+3. Enter '1920' in Original Width, '1080' in Original Height.
+4. Enter '1280' in New Width. Note that New Height instantly updates to '720'.
+
+Action Item: `git push -u origin feature/aspect-ratio` (conceptual command for agent logging)
