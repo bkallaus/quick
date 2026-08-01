@@ -1,0 +1,7 @@
+Assumption: Since no specific feature was requested, I must invent a net-new one that avoids duplicating existing remote branches (e.g., url-encoder, temperature-converter, etc.).
+Decision: JWT Decoder.
+Forced Variance (Lateral Thinking):
+1. Standard: Input field for JWT, output fields for header and payload.
+2. Minimalist: Paste JWT, automatically format and display JSON without any extra UI fluff.
+3. Lateral: Include expiration checking and signature validation.
+Selected approach: Minimalist + Expiration Checking. We will parse the JWT, format the header and payload as JSON, and if the payload has an `exp` claim, show if it's expired. This is the most helpful for quick debugging.

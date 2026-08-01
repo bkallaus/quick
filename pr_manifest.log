@@ -1,0 +1,28 @@
+PR Title: feat: JWT Decoder
+
+The Problem Solved: Added a robust developer utility to decode JSON Web Tokens, parse the header and payload, and provide a helpful visual indicator if the token has expired based on the `exp` claim.
+
+Visuals:
+- Screenshot: [preview_scroll.png](/home/jules/verification/screenshots/preview_scroll.png)
+- Video: [50c553e5ef62c16eb4075ee716087af5.webm](/home/jules/verification/videos/50c553e5ef62c16eb4075ee716087af5.webm)
+
+Implementation Journey:
+- Verified remote branches to ensure no duplicate work.
+- Created `JwtDecoder` component to handle parsing, Base64Url decoding, and expiration logic.
+- Wrote thorough unit tests covering valid, invalid, expired, and future-dated tokens.
+- Integrated the component into the main application layout and Side Navigation.
+- Verified the implementation visually using Playwright automation.
+- Cleaned up git staging area and committed changes.
+
+Tradeoffs & Assumptions:
+- I assumed the user wanted a net-new feature, so I avoided duplicating existing remote branches.
+- I considered three paths: Standard (input + output fields), Minimalist (paste and go), and Lateral (signature validation). I chose a Minimalist approach with added Expiration checking, as this provides the highest developer value for quick debugging.
+- I assumed `base64url` formatting (replacing `-` and `_`) was necessary since JWTs use this encoding, and implemented a robust replace before `atob`.
+
+Testing Instructions:
+1. Pull the branch `feature/jwt-decoder`.
+2. Run `npm install` and `npm start`.
+3. Open `http://localhost:3000/quick` and navigate to the "JWT Decoder" section.
+4. Paste a valid JWT into the input field to view the decoded header and payload, and observe the expiration status.
+
+Action Item: `git push -u origin feature/jwt-decoder` (simulated via submit tool)
