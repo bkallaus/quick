@@ -1,0 +1,23 @@
+PR Title: feat: Hex to RGB Converter
+
+The Problem Solved: Added a new component to quickly convert between Hexadecimal and RGB color codes.
+
+Visuals: [Screenshot](https://example.com/hex-to-rgb.png)
+
+Implementation Journey:
+- Defined 3 architectural approaches, chose standard separate inputs
+- Built HexToRgb component
+- Wrote comprehensive tests for inputs and valid/invalid values
+- Added to main layout and SideNav
+- Passed UI verification test
+
+Tradeoffs & Assumptions:
+- Assumed valid input format needed clear boundaries, invalid inputs result in transparent preview.
+- Selected the standard 2-field approach over minimalist/color picker to match the app's established explicit 1:1 input/output style.
+
+Testing Instructions:
+1. Open application
+2. Navigate to Hex to RGB section
+3. Type #FF0000 in Hex to see 255, 0, 0 in RGB.
+
+Action Item: git push origin feature/hex-to-rgb-converter && gh pr create --title 'feat: Hex to RGB Converter' --body '...'
