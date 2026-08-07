@@ -1,0 +1,29 @@
+PR Title: feat: Add Slug Generator
+
+The Problem Solved: Added a new "URL Slug Generator" tool that converts arbitrary text into SEO-friendly URL slugs and allows users to copy them to their clipboard.
+
+Visuals:
+- [Screenshot](/home/jules/verification/screenshots/screenshot.png)
+- [Video](/home/jules/verification/videos/7a8dad2fc94887faecb26dd1d549ce47.webm)
+
+Implementation Journey:
+- Investigated existing branches to avoid duplicates.
+- Invented the Slug Generator feature due to an ambiguous request.
+- Implemented `SlugGenerator` React component.
+- Wrote and passed Jest tests verifying generation, rendering, and clipboard functionality.
+- Integrated component into `src/App.tsx` and `src/components/side-nav.tsx`.
+- Wrote Playwright verification script to visually confirm end-to-end functionality.
+
+Tradeoffs & Assumptions:
+- Assumption: The user asked for a new feature without specifying one. I generated "Slug Generator" as a net-new tool fitting the app's scope.
+- Options explored: 1) Standard text input and readOnly result. 2) Minimalist single-input auto-updating URL bar. 3) Complex drag-and-drop file slugifier.
+- Decision: I chose the Standard text input approach because it is the simplest implementation that fits the existing UI paradigm, adhering to the "Simplicity First" protocol.
+
+Testing Instructions:
+1. Run `npm start`.
+2. Navigate to `http://localhost:3000/quick#slug-generator`.
+3. Type a string with spaces and symbols into the input box.
+4. Verify the output box instantly shows a hyphenated, lowercase slug.
+5. Click "Copy" and paste into a scratchpad to verify clipboard integration.
+
+Action Item: `git push -u origin feature/slug-generator` (simulated by submit tool)
