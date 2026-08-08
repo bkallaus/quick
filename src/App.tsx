@@ -10,6 +10,7 @@ import PasswordGenerator from "./components/password-generator";
 import TimestampConverter from "./components/timestamp-converter";
 import UnixPermissions from "./components/unix-permissions";
 import PxToRem from "./components/px-to-rem";
+import LoremIpsum from "./components/lorem-ipsum";
 import SideNav from "./components/side-nav";
 import "./App.css";
 
@@ -34,6 +35,7 @@ export default function App() {
           <div id="timestamp-converter"><TimestampConverter /></div>
           <div id="unix-permissions"><UnixPermissions /></div>
           <div id="px-to-rem"><PxToRem /></div>
+          <div id="lorem-ipsum-generator"><LoremIpsum /></div>
         </div>
       </main>
     </div>
