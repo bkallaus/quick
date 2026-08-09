@@ -18,6 +18,7 @@ const SideNav = () => {
           <li><a href="#unix-permissions">Unix Permissions</a></li>
           <li><a href="#px-to-rem">Px to Rem</a></li>
           <li><a href="#lorem-ipsum-generator">Lorem Ipsum Generator</a></li>
+          <li><a href="#url-parser">URL Parser</a></li>
         </ul>
       </nav>
     </aside>
