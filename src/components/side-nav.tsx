@@ -18,6 +18,7 @@ const SideNav = () => {
           <li><a href="#unix-permissions">Unix Permissions</a></li>
           <li><a href="#px-to-rem">Px to Rem</a></li>
           <li><a href="#url-parser">URL Parser</a></li>
+          <li><a href="#csv-to-json">CSV to JSON</a></li>
         </ul>
       </nav>
     </aside>

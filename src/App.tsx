@@ -11,6 +11,7 @@ import TimestampConverter from "./components/timestamp-converter";
 import UnixPermissions from "./components/unix-permissions";
 import PxToRem from "./components/px-to-rem";
 import UrlParser from "./components/url-parser";
+import CsvToJson from "./components/csv-to-json";
 import SideNav from "./components/side-nav";
 import "./App.css";
 
@@ -36,6 +37,7 @@ export default function App() {
           <div id="unix-permissions"><UnixPermissions /></div>
           <div id="px-to-rem"><PxToRem /></div>
           <div id="url-parser"><UrlParser /></div>
+          <div id="csv-to-json"><CsvToJson /></div>
         </div>
       </main>
     </div>
