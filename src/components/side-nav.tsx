@@ -11,6 +11,7 @@ const navItems = [
   { href: '#iframe-tester', label: 'Iframe Tester' },
   { href: '#generate-list', label: 'Generate List' },
   { href: '#base64-encoder', label: 'Base64 Encoder/Decoder' },
+  { href: '#hash-generator', label: 'Hash Generator' },
   { href: '#password-generator', label: 'Password Generator' },
   { href: '#timestamp-converter', label: 'Timestamp Converter' },
   { href: '#unix-permissions', label: 'Unix Permissions' },
