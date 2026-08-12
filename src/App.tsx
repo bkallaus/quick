@@ -10,8 +10,9 @@ import PasswordGenerator from "./components/password-generator";
 import TimestampConverter from "./components/timestamp-converter";
 import UnixPermissions from "./components/unix-permissions";
 import PxToRem from "./components/px-to-rem";
-import UrlParser from "./components/url-parser";
 import ColorContrast from "./components/color-contrast";
+import LoremIpsum from "./components/lorem-ipsum";
+import UrlParser from "./components/url-parser";
 import SideNav from "./components/side-nav";
 import "./App.css";
 
@@ -36,8 +37,9 @@ export default function App() {
           <div id="timestamp-converter"><TimestampConverter /></div>
           <div id="unix-permissions"><UnixPermissions /></div>
           <div id="px-to-rem"><PxToRem /></div>
-          <div id="url-parser"><UrlParser /></div>
           <div id="color-contrast"><ColorContrast /></div>
+          <div id="lorem-ipsum-generator"><LoremIpsum /></div>
+          <div id="url-parser"><UrlParser /></div>
         </div>
       </main>
     </div>

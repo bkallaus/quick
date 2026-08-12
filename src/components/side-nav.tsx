@@ -16,8 +16,10 @@ const SideNav = () => {
           <li><a href="#password-generator">Password Generator</a></li>
           <li><a href="#timestamp-converter">Timestamp Converter</a></li>
           <li><a href="#unix-permissions">Unix Permissions</a></li>
-          <li><a href="#url-parser">URL Parser</a></li>
           <li><a href="#color-contrast">Color Contrast Checker</a></li>
+          <li><a href="#px-to-rem">Px to Rem</a></li>
+          <li><a href="#lorem-ipsum-generator">Lorem Ipsum Generator</a></li>
+          <li><a href="#url-parser">URL Parser</a></li>
         </ul>
       </nav>
     </aside>
