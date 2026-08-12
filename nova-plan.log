@@ -1,0 +1,6 @@
+Assumptions: A Lorem Ipsum generator provides simple text placeholder generation.
+Multiple Interpretations:
+1. Standard: Configurable paragraphs with standard latin text.
+2. Minimalist: Fixed 3 paragraphs, copy to clipboard button.
+3. Creative: Configurable words/paragraphs, random text generation from word list.
+Decision: Creative/Standard mix - configurable paragraph count using a predefined dictionary of standard Lorem Ipsum words to randomly generate text, providing flexibility without over-engineering.
