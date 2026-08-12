@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import CalculationContainer from './container';
+import { Checkbox } from "./ui/checkbox";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 
 type Permission = 'read' | 'write' | 'execute';
 type Entity = 'owner' | 'group' | 'public';
@@ -81,67 +84,67 @@ const UnixPermissions = () => {
 
   return (
     <CalculationContainer>
-      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        <h4 style={{ textAlign: "center", marginBottom: 0 }}>Unix Permissions Calculator</h4>
+      <div className="w-full flex flex-col gap-6 mt-4">
+        <h4 className="text-center mb-0 text-xl font-semibold">Unix Permissions Calculator</h4>
 
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+        <div className="flex gap-4 flex-wrap">
           {['owner', 'group', 'public'].map((entityStr) => {
              const entity = entityStr as Entity;
              return (
-               <div key={entity} style={{ flex: 1, minWidth: '100px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                 <strong>{entity.charAt(0).toUpperCase() + entity.slice(1)}</strong>
-                 <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-                   <input
-                     type="checkbox"
+               <div key={entity} className="flex-1 min-w-[100px] flex flex-col gap-2">
+                 <strong className="capitalize">{entity}</strong>
+                 <div className="flex items-center gap-2">
+                   <Checkbox
+                     id={`${entity}-read`}
                      checked={permissions[entity].read}
-                     onChange={() => handleCheckboxChange(entity, 'read')}
+                     onCheckedChange={() => handleCheckboxChange(entity, 'read')}
                      aria-label={`${entity} read`}
                    />
-                   Read (4)
-                 </label>
-                 <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-                   <input
-                     type="checkbox"
+                   <Label htmlFor={`${entity}-read`}>Read (4)</Label>
+                 </div>
+                 <div className="flex items-center gap-2">
+                   <Checkbox
+                     id={`${entity}-write`}
                      checked={permissions[entity].write}
-                     onChange={() => handleCheckboxChange(entity, 'write')}
+                     onCheckedChange={() => handleCheckboxChange(entity, 'write')}
                      aria-label={`${entity} write`}
                    />
-                   Write (2)
-                 </label>
-                 <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-                   <input
-                     type="checkbox"
+                   <Label htmlFor={`${entity}-write`}>Write (2)</Label>
+                 </div>
+                 <div className="flex items-center gap-2">
+                   <Checkbox
+                     id={`${entity}-execute`}
                      checked={permissions[entity].execute}
-                     onChange={() => handleCheckboxChange(entity, 'execute')}
+                     onCheckedChange={() => handleCheckboxChange(entity, 'execute')}
                      aria-label={`${entity} execute`}
                    />
-                   Execute (1)
-                 </label>
+                   <Label htmlFor={`${entity}-execute`}>Execute (1)</Label>
+                 </div>
                </div>
              );
           })}
         </div>
 
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-end' }}>
-          <label style={{ flex: 1, minWidth: '120px' }}>
-            Octal
-            <input
+        <div className="flex gap-4 flex-wrap items-end">
+          <div className="flex flex-col gap-2 flex-1 min-w-[120px]">
+            <Label>Octal</Label>
+            <Input
               type="text"
               value={octalValue}
               onChange={handleOctalChange}
               placeholder="644"
-              style={{ marginBottom: 0 }}
+              className="mb-0"
             />
-          </label>
-          <label style={{ flex: 1, minWidth: '120px' }}>
-            Symbolic
-            <input
+          </div>
+          <div className="flex flex-col gap-2 flex-1 min-w-[120px]">
+            <Label>Symbolic</Label>
+            <Input
               type="text"
               value={getSymbolic(permissions)}
               readOnly
-              style={{ marginBottom: 0, cursor: 'not-allowed' }}
+              className="mb-0 cursor-not-allowed bg-muted"
             />
-          </label>
+          </div>
         </div>
       </div>
     </CalculationContainer>

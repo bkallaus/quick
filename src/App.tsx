@@ -22,7 +22,7 @@ export default function App() {
       <SideNav />
       <main className="main-content">
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-          <h1 style={{ marginBottom: 24 }}>
+          <h1 className="text-2xl font-bold mb-6 text-center md:text-left">
             Quick Calculations
           </h1>
           <div id="shareable-list"><ShareableList /></div>

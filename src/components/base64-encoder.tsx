@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import CalculationContainer from "./container";
+import { Label } from "./ui/label";
+import { Textarea } from "./ui/textarea";
 
 const Base64Encoder = () => {
   const [plainText, setPlainText] = useState("");
@@ -30,28 +32,28 @@ const Base64Encoder = () => {
 
   return (
     <CalculationContainer>
-      <h4 style={{ width: "100%", textAlign: "center", marginBottom: 0 }}>Base64 Encoder/Decoder</h4>
-      <div style={{ width: "100%", display: "flex", gap: "16px", flexWrap: "wrap" }}>
-        <label style={{ flex: 1, minWidth: "250px" }}>
-          Plain Text
-          <textarea
+      <h4 className="w-full text-center mb-0 text-xl font-semibold">Base64 Encoder/Decoder</h4>
+      <div className="w-full flex gap-4 flex-wrap mt-4">
+        <div className="flex flex-col gap-2 flex-1 min-w-[250px]">
+          <Label>Plain Text</Label>
+          <Textarea
             value={plainText}
             onChange={handlePlainChange}
             placeholder="Enter plain text..."
-            style={{ width: "100%", minHeight: "120px", marginBottom: 0 }}
+            className="w-full min-h-[120px]"
           />
-        </label>
-        <label style={{ flex: 1, minWidth: "250px" }}>
-          Base64
-          <textarea
+        </div>
+        <div className="flex flex-col gap-2 flex-1 min-w-[250px]">
+          <Label>Base64</Label>
+          <Textarea
             value={base64Text}
             onChange={handleBase64Change}
             placeholder="Enter base64..."
-            style={{ width: "100%", minHeight: "120px", marginBottom: 0 }}
+            className="w-full min-h-[120px]"
           />
-        </label>
+        </div>
       </div>
-      {error && <div style={{ width: "100%", color: "red", textAlign: "center", marginTop: "8px" }} role="alert">{error}</div>}
+      {error && <div className="w-full text-destructive text-center mt-2" role="alert">{error}</div>}
     </CalculationContainer>
   );
 };

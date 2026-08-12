@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CalculationContainer from "./container";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 
 // Calculate relative luminance based on WCAG 2.0 standards
 const getLuminance = (r: number, g: number, b: number) => {
@@ -84,91 +86,89 @@ const ColorContrast = () => {
 
   return (
     <CalculationContainer>
-      <h4 style={{ width: "100%", textAlign: "center", marginBottom: 0 }}>Color Contrast Checker</h4>
+      <h4 className="w-full text-center mb-0 text-xl font-semibold">Color Contrast Checker</h4>
 
-      <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "16px", marginTop: "16px" }}>
-        <div style={{ display: "flex", gap: "16px" }}>
-          <label style={{ flex: 1 }}>
-            Foreground Color (Hex)
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <div className="w-full flex flex-col gap-4 mt-4">
+        <div className="flex gap-4 flex-col sm:flex-row">
+          <div className="flex flex-col gap-2 flex-1">
+            <Label>Foreground Color (Hex)</Label>
+            <div className="flex items-center gap-2">
                 <input
                     type="color"
                     value={getValidColorInputValue(foreground, "#000000")}
                     onChange={handleForegroundChange}
-                    style={{ width: "40px", height: "40px", padding: 0, border: "1px solid var(--pico-muted-border-color)", cursor: "pointer", background: "none" }}
+                    className="w-10 h-10 p-0 border border-border cursor-pointer bg-transparent rounded"
                 />
-                <input
-                type="text"
-                value={foreground}
-                onChange={handleForegroundChange}
-                placeholder="#000000"
-                style={{ flex: 1, margin: 0 }}
+                <Input
+                  type="text"
+                  value={foreground}
+                  onChange={handleForegroundChange}
+                  placeholder="#000000"
+                  className="flex-1"
                 />
             </div>
-          </label>
-          <label style={{ flex: 1 }}>
-            Background Color (Hex)
-             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          </div>
+          <div className="flex flex-col gap-2 flex-1">
+            <Label>Background Color (Hex)</Label>
+             <div className="flex items-center gap-2">
                 <input
                     type="color"
                     value={getValidColorInputValue(background, "#ffffff")}
                     onChange={handleBackgroundChange}
-                    style={{ width: "40px", height: "40px", padding: 0, border: "1px solid var(--pico-muted-border-color)", cursor: "pointer", background: "none" }}
+                    className="w-10 h-10 p-0 border border-border cursor-pointer bg-transparent rounded"
                 />
-                <input
-                type="text"
-                value={background}
-                onChange={handleBackgroundChange}
-                placeholder="#FFFFFF"
-                style={{ flex: 1, margin: 0 }}
+                <Input
+                  type="text"
+                  value={background}
+                  onChange={handleBackgroundChange}
+                  placeholder="#FFFFFF"
+                  className="flex-1"
                 />
             </div>
-          </label>
+          </div>
         </div>
 
         <div
           style={{
-            padding: "2rem",
-            marginTop: "16px",
-            borderRadius: "4px",
             backgroundColor: validateHex(background) ? (background.startsWith("#") ? background : `#${background}`) : "#fff",
             color: validateHex(foreground) ? (foreground.startsWith("#") ? foreground : `#${foreground}`) : "#000",
-            textAlign: "center",
-            border: "1px solid var(--pico-muted-border-color)"
           }}
+          className="p-8 mt-4 rounded-md text-center border border-border shadow-sm"
         >
-          <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>Preview Text</div>
-          <div style={{ fontSize: "1rem" }}>This is how normal text will look.</div>
+          <div className="text-2xl font-bold">Preview Text</div>
+          <div className="text-base">This is how normal text will look.</div>
         </div>
 
         {ratio !== null ? (
-            <div style={{ marginTop: "16px" }}>
-                <h5 style={{ textAlign: "center" }}>Contrast Ratio: {ratio.toFixed(2)}:1</h5>
+            <div className="mt-4">
+                <h5 className="text-center font-semibold mb-4 text-lg">Contrast Ratio: {ratio.toFixed(2)}:1</h5>
 
-                <table role="grid">
-                    <thead>
-                        <tr>
-                            <th scope="col">Standard</th>
-                            <th scope="col">Normal Text</th>
-                            <th scope="col">Large Text</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">WCAG AA</th>
-                            <td>{status.aaNormal === "Pass" ? "✅ Pass" : "❌ Fail"}</td>
-                            <td>{status.aaLarge === "Pass" ? "✅ Pass" : "❌ Fail"}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">WCAG AAA</th>
-                            <td>{status.aaaNormal === "Pass" ? "✅ Pass" : "❌ Fail"}</td>
-                            <td>{status.aaaLarge === "Pass" ? "✅ Pass" : "❌ Fail"}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div className="w-full overflow-auto">
+                  <table className="w-full text-sm text-left border-collapse">
+                      <thead className="bg-muted">
+                          <tr>
+                              <th className="p-3 font-semibold border-b border-border">Standard</th>
+                              <th className="p-3 font-semibold border-b border-border">Normal Text</th>
+                              <th className="p-3 font-semibold border-b border-border">Large Text</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr className="border-b border-border">
+                              <th className="p-3 font-medium">WCAG AA</th>
+                              <td className="p-3">{status.aaNormal === "Pass" ? "✅ Pass" : "❌ Fail"}</td>
+                              <td className="p-3">{status.aaLarge === "Pass" ? "✅ Pass" : "❌ Fail"}</td>
+                          </tr>
+                          <tr>
+                              <th className="p-3 font-medium">WCAG AAA</th>
+                              <td className="p-3">{status.aaaNormal === "Pass" ? "✅ Pass" : "❌ Fail"}</td>
+                              <td className="p-3">{status.aaaLarge === "Pass" ? "✅ Pass" : "❌ Fail"}</td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
             </div>
         ) : (
-            <div style={{ marginTop: "16px", textAlign: "center", color: "var(--pico-color)" }}>
+            <div className="mt-4 text-center text-muted-foreground">
                 Invalid hex color(s).
             </div>
         )}

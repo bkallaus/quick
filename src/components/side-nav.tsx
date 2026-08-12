@@ -1,28 +1,122 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Menu, X } from 'lucide-react';
+import { Button } from './ui/button';
+
+const navItems = [
+  { href: '#shareable-list', label: 'Shareable List' },
+  { href: '#percent-to-hex', label: 'Percent to Hex' },
+  { href: '#ml-to-cups', label: 'Ml to Cups' },
+  { href: '#pour-over', label: 'Pour Over' },
+  { href: '#qr-code', label: 'QR Code' },
+  { href: '#iframe-tester', label: 'Iframe Tester' },
+  { href: '#generate-list', label: 'Generate List' },
+  { href: '#base64-encoder', label: 'Base64 Encoder/Decoder' },
+  { href: '#password-generator', label: 'Password Generator' },
+  { href: '#timestamp-converter', label: 'Timestamp Converter' },
+  { href: '#unix-permissions', label: 'Unix Permissions' },
+  { href: '#color-contrast', label: 'Color Contrast Checker' },
+  { href: '#px-to-rem', label: 'Px to Rem' },
+  { href: '#lorem-ipsum-generator', label: 'Lorem Ipsum Generator' },
+  { href: '#url-parser', label: 'URL Parser' },
+];
+
+const NavLinks = ({ onClick }: { onClick?: () => void }) => (
+  <ul className="flex flex-col gap-1 list-none p-0 m-0">
+    {navItems.map(({ href, label }) => (
+      <li key={href}>
+        <a
+          href={href}
+          onClick={onClick}
+          className="block rounded-md px-3 py-2 text-sm text-foreground/80 no-underline transition-colors hover:bg-accent hover:text-foreground"
+        >
+          {label}
+        </a>
+      </li>
+    ))}
+  </ul>
+);
 
 const SideNav = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const closeMobile = useCallback(() => setMobileOpen(false), []);
+
+  // Close on escape key
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeMobile();
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [mobileOpen, closeMobile]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
   return (
-    <aside className="side-nav">
-      <nav>
-        <ul>
-          <li><a href="#shareable-list">Shareable List</a></li>
-          <li><a href="#percent-to-hex">Percent to Hex</a></li>
-          <li><a href="#ml-to-cups">Ml to Cups</a></li>
-          <li><a href="#pour-over">Pour Over</a></li>
-          <li><a href="#qr-code">QR Code</a></li>
-          <li><a href="#iframe-tester">Iframe Tester</a></li>
-          <li><a href="#generate-list">Generate List</a></li>
-          <li><a href="#base64-encoder">Base64 Encoder/Decoder</a></li>
-          <li><a href="#password-generator">Password Generator</a></li>
-          <li><a href="#timestamp-converter">Timestamp Converter</a></li>
-          <li><a href="#unix-permissions">Unix Permissions</a></li>
-          <li><a href="#color-contrast">Color Contrast Checker</a></li>
-          <li><a href="#px-to-rem">Px to Rem</a></li>
-          <li><a href="#lorem-ipsum-generator">Lorem Ipsum Generator</a></li>
-          <li><a href="#url-parser">URL Parser</a></li>
-        </ul>
-      </nav>
-    </aside>
+    <>
+      {/* Mobile hamburger button — fixed at top-left */}
+      <Button
+        variant="outline"
+        size="icon"
+        className="fixed top-4 left-4 z-50 md:hidden"
+        onClick={() => setMobileOpen(true)}
+        aria-label="Open navigation menu"
+      >
+        <Menu className="size-5" />
+      </Button>
+
+      {/* Mobile backdrop */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm md:hidden"
+          onClick={closeMobile}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Mobile slide-out drawer */}
+      <aside
+        className={`
+          fixed top-0 left-0 z-50 h-full w-72 
+          bg-background border-r border-border
+          transform transition-transform duration-300 ease-in-out
+          ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
+          md:hidden
+          overflow-y-auto
+        `}
+      >
+        <div className="flex items-center justify-between p-4 border-b border-border">
+          <span className="text-sm font-semibold text-foreground">Navigation</span>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={closeMobile}
+            aria-label="Close navigation menu"
+          >
+            <X className="size-4" />
+          </Button>
+        </div>
+        <nav className="p-3">
+          <NavLinks onClick={closeMobile} />
+        </nav>
+      </aside>
+
+      {/* Desktop sidebar */}
+      <aside className="side-nav hidden md:block w-64 shrink-0 border-r border-border min-h-screen p-4 bg-muted/30">
+        <nav>
+          <NavLinks />
+        </nav>
+      </aside>
+    </>
   );
 };
 

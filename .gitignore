@@ -10,11 +10,13 @@
 
 # production
 /build
+/dist
 
 # IDEs and editors
 /.idea
 /.vscode
 
+.Jules
 # misc
 .DS_Store
 .env.local

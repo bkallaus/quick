@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Textarea } from "./ui/textarea";
 
 const LOREM_WORDS = [
   "lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit",
@@ -38,45 +43,46 @@ const LoremIpsum = () => {
   };
 
   return (
-    <article id="lorem-ipsum-generator">
-      <header>
-        <h2>Lorem Ipsum Generator</h2>
-      </header>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <label htmlFor="paragraphs-input" style={{ marginBottom: 0 }}>Paragraphs:</label>
-          <input
+    <Card id="lorem-ipsum-generator">
+      <CardHeader>
+        <CardTitle className="text-2xl">Lorem Ipsum Generator</CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-4">
+        <div className="flex items-center gap-4">
+          <Label htmlFor="paragraphs-input" className="whitespace-nowrap">Paragraphs:</Label>
+          <Input
             id="paragraphs-input"
             type="number"
             min="1"
             max="10"
             value={paragraphs}
             onChange={(e) => setParagraphs(Number(e.target.value))}
-            style={{ width: '80px', marginBottom: 0 }}
+            className="w-20"
           />
-          <button onClick={handleGenerate} style={{ width: 'auto', marginBottom: 0 }}>Generate</button>
+          <Button onClick={handleGenerate}>Generate</Button>
         </div>
 
         {text && (
-          <div style={{ position: 'relative' }}>
-            <textarea
+          <div className="relative">
+            <Textarea
               readOnly
               value={text}
               rows={10}
-              style={{ marginBottom: '0.5rem', width: '100%', resize: 'vertical' }}
+              className="w-full resize-y pr-20"
               aria-label="Generated lorem ipsum text"
             />
-            <button
+            <Button
               onClick={handleCopy}
-              className="outline"
-              style={{ width: 'auto', position: 'absolute', top: '10px', right: '10px' }}
+              variant="outline"
+              size="sm"
+              className="absolute top-2 right-2"
             >
               Copy
-            </button>
+            </Button>
           </div>
         )}
-      </div>
-    </article>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import CalculationContainer from './container';
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 type ListItem = {
   id: string;
@@ -49,34 +52,34 @@ const ShareableList = () => {
 
   return (
     <CalculationContainer>
-      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        <h4 style={{ textAlign: "center", marginBottom: 0 }}>Generate Shareable List</h4>
+      <div className="w-full flex flex-col gap-6 mt-4">
+        <h4 className="text-center mb-0 text-xl font-semibold">Generate Shareable List</h4>
 
         {/* Add Item Form */}
-        <form onSubmit={handleAddItem} style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-end' }}>
-          <label style={{ flex: 1, minWidth: '120px' }}>
-            Key
-            <input
+        <form onSubmit={handleAddItem} className="flex gap-4 flex-wrap items-end w-full">
+          <div className="flex flex-col gap-2 flex-1 min-w-[120px]">
+            <Label>Key</Label>
+            <Input
               type="text"
               value={newKey}
               onChange={(e) => setNewKey(e.target.value)}
               placeholder="e.g. Username"
               required
-              style={{ marginBottom: 0 }}
+              className="mb-0"
             />
-          </label>
-          <label style={{ flex: 1, minWidth: '120px' }}>
-            Value
-            <input
+          </div>
+          <div className="flex flex-col gap-2 flex-1 min-w-[120px]">
+            <Label>Value</Label>
+            <Input
               type="text"
               value={newValue}
               onChange={(e) => setNewValue(e.target.value)}
               placeholder="e.g. admin"
               required
-              style={{ marginBottom: 0 }}
+              className="mb-0"
             />
-          </label>
-          <button type="submit" style={{ width: 'auto', marginBottom: 0 }}>Add</button>
+          </div>
+          <Button type="submit" className="w-auto mb-0">Add</Button>
         </form>
       </div>
     </CalculationContainer>

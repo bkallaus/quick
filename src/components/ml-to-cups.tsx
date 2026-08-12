@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { NumericFormat } from "react-number-format";
 import CalculationContainer from "./container";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 const MlToCups = () => {
   const [mililitersOfWater, setMiliLitersOfWater] = useState(236.6);
@@ -18,27 +20,29 @@ const MlToCups = () => {
 
   return (
     <CalculationContainer>
-      <h4 style={{ width: "100%", textAlign: "center", marginBottom: 0 }}>Cups to mL</h4>
+      <h4 className="w-full text-center mb-0 text-xl font-semibold">Cups to mL</h4>
 
-      <div style={{ width: "100%", display: "flex", gap: "16px" }}>
-        <label style={{ flex: 1 }}>
-          MiliLiters
+      <div className="w-full flex gap-4 mt-4">
+        <div className="flex flex-col gap-2 flex-1">
+          <Label>MiliLiters</Label>
           <NumericFormat
             value={mililitersOfWater}
             thousandSeparator=","
             allowNegative={false}
             onValueChange={(e: { value: any }) => updateMililiters(Number(e.value))}
+            customInput={Input}
           />
-        </label>
-        <label style={{ flex: 1 }}>
-          Cups
+        </div>
+        <div className="flex flex-col gap-2 flex-1">
+          <Label>Cups</Label>
           <NumericFormat
             value={cups}
             allowNegative={false}
             thousandSeparator=","
             onValueChange={(e) => updateCups(Number(e.value))}
+            customInput={Input}
           />
-        </label>
+        </div>
       </div>
     </CalculationContainer>
   );

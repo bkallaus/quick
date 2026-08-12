@@ -1,5 +1,7 @@
 import React, { useState, ChangeEvent } from "react";
 import CalculationContainer from "./container";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 const PxToRem = () => {
   const [baseSize, setBaseSize] = useState<string>("16");
@@ -48,37 +50,37 @@ const PxToRem = () => {
   };
 
   return (
-    <div className="component-wrapper">
-      <h2>Px to Rem Converter</h2>
+    <div className="w-full">
       <CalculationContainer>
-        <div style={{ display: "flex", gap: "16px", alignItems: "flex-end", width: "100%", flexWrap: "wrap" }}>
-          <label style={{ flex: 1, minWidth: "100px" }}>
-            Base Size (px)
-            <input
+        <h4 className="w-full text-center mb-0 text-xl font-semibold">Px to Rem Converter</h4>
+        <div className="flex gap-4 items-end w-full flex-wrap mt-4">
+          <div className="flex flex-col gap-2 flex-1 min-w-[100px]">
+            <Label>Base Size (px)</Label>
+            <Input
               type="number"
               value={baseSize}
               onChange={handleBaseSizeChange}
               placeholder="16"
             />
-          </label>
-          <label style={{ flex: 1, minWidth: "120px" }}>
-            Pixels (px)
-            <input
+          </div>
+          <div className="flex flex-col gap-2 flex-1 min-w-[120px]">
+            <Label>Pixels (px)</Label>
+            <Input
               type="number"
               value={pxValue}
               onChange={handlePxChange}
               placeholder="16"
             />
-          </label>
-          <label style={{ flex: 1, minWidth: "120px" }}>
-            Rem (rem)
-            <input
+          </div>
+          <div className="flex flex-col gap-2 flex-1 min-w-[120px]">
+            <Label>Rem (rem)</Label>
+            <Input
               type="number"
               value={remValue}
               onChange={handleRemChange}
               placeholder="1"
             />
-          </label>
+          </div>
         </div>
       </CalculationContainer>
     </div>

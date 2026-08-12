@@ -1,6 +1,8 @@
 import CalculationContainer from "./container";
 import { PatternFormat } from "react-number-format";
 import React from "react";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 const PercentToHex = () => {
   const [baseTenValue, setBaseTenValue] = React.useState(0);
@@ -46,10 +48,10 @@ const PercentToHex = () => {
 
   return (
     <CalculationContainer>
-      <h4 style={{ width: "100%", textAlign: "center", marginBottom: 0 }}>Percent to Hex</h4>
-      <div style={{ width: "100%", display: "flex", gap: "16px" }}>
-        <label style={{ flex: 1 }}>
-          Percent
+      <h4 className="w-full text-center mb-0 text-xl font-semibold">Percent to Hex</h4>
+      <div className="w-full flex gap-4 mt-4 flex-col sm:flex-row">
+        <div className="flex flex-col gap-2 flex-1">
+          <Label>Percent</Label>
           <PatternFormat
             value={percentValue}
             format={"###%"}
@@ -57,23 +59,24 @@ const PercentToHex = () => {
             onValueChange={({ value }: { value: string }) =>
               onPercentChange(Number(value))
             }
+            customInput={Input}
           />
-        </label>
-        <label style={{ flex: 1 }}>
-          Hex
-          <input
+        </div>
+        <div className="flex flex-col gap-2 flex-1">
+          <Label>Hex</Label>
+          <Input
             onChange={(e) => onHexChange(e.target.value)}
             value={hexValue}
           />
-        </label>
-        <label style={{ flex: 1 }}>
-          Base 10
-          <input
+        </div>
+        <div className="flex flex-col gap-2 flex-1">
+          <Label>Base 10</Label>
+          <Input
             type="number"
             onChange={(e) => onBaseTenChange(Number(e.target.value))}
             value={baseTenValue}
           />
-        </label>
+        </div>
       </div>
     </CalculationContainer>
   );

@@ -1,19 +1,14 @@
 import React, { ReactNode } from "react";
 
+import { Card, CardContent } from "./ui/card";
+
 const CalculationContainer = ({ children }: { children: ReactNode }) => {
   return (
-    <article
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 24,
-        alignItems: "center",
-        justifyContent: "center",
-        margin: 0,
-      }}
-    >
-      {children}
-    </article>
+    <Card className="m-0 border-none shadow-none bg-transparent sm:bg-card sm:border-solid sm:shadow-sm">
+      <CardContent className="flex flex-wrap items-center justify-center gap-6 p-6">
+        {children}
+      </CardContent>
+    </Card>
   );
 };
 

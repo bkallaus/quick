@@ -1,6 +1,9 @@
 import React, { useState, useRef } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import CalculationContainer from "./container";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 const QrCode = () => {
   const [text, setText] = useState("");
@@ -27,30 +30,22 @@ const QrCode = () => {
 
   return (
     <CalculationContainer>
-      <h4 style={{ width: "100%", textAlign: "center", marginBottom: 0 }}>QR Code</h4>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 24,
-          alignItems: "center",
-          width: "100%",
-        }}
-      >
-        <div style={{ width: "100%", display: "flex", gap: "16px", alignItems: "flex-end" }}>
-          <label style={{ flex: 1 }}>
-            Content
-            <input
+      <h4 className="w-full text-center mb-0 text-xl font-semibold">QR Code</h4>
+      <div className="flex flex-col gap-6 items-center w-full mt-4">
+        <div className="w-full flex gap-4 items-end">
+          <div className="flex flex-col gap-2 flex-1">
+            <Label>Content</Label>
+            <Input
               type="text"
               value={text}
               onChange={handleChange}
               placeholder="Enter text to generate QR code"
-              style={{ marginBottom: 0 }}
+              className="mb-0"
             />
-          </label>
-          <button onClick={download} disabled={!text} style={{ width: "auto", marginBottom: 0 }}>
+          </div>
+          <Button onClick={download} disabled={!text} className="w-auto mb-0">
             Download PNG
-          </button>
+          </Button>
         </div>
         {text && (
           <div ref={canvasRef}>

@@ -1,5 +1,9 @@
 import CalculationContainer from "./container";
 import React, { useState, useEffect, useCallback } from "react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Checkbox } from "./ui/checkbox";
 
 interface PasswordHistoryItem {
   password: string;
@@ -106,83 +110,85 @@ const PasswordGenerator = () => {
 
   return (
     <CalculationContainer>
-      <h4 style={{ width: "100%", textAlign: "center", marginBottom: 0 }}>Password Generator</h4>
-      <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "16px", marginTop: "16px" }}>
-        <label>
-          Length
-          <input
+      <h4 className="w-full text-center mb-0 text-xl font-semibold">Password Generator</h4>
+      <div className="w-full flex flex-col gap-6 mt-4">
+        <div className="flex flex-col gap-2">
+          <Label>Length</Label>
+          <Input
             type="number"
             min={1}
             max={128}
             value={length}
             onChange={(e) => setLength(Number(e.target.value))}
           />
-        </label>
+        </div>
 
-        <fieldset>
-          <label>
-            <input
-              type="checkbox"
+        <div className="grid grid-cols-2 gap-4">
+          <div className="flex items-center gap-2">
+            <Checkbox
+              id="uppercase"
               checked={includeUppercase}
-              onChange={(e) => setIncludeUppercase(e.target.checked)}
+              onCheckedChange={(checked) => setIncludeUppercase(checked as boolean)}
             />
-            Uppercase
-          </label>
-          <label>
-            <input
-              type="checkbox"
+            <Label htmlFor="uppercase">Uppercase</Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Checkbox
+              id="lowercase"
               checked={includeLowercase}
-              onChange={(e) => setIncludeLowercase(e.target.checked)}
+              onCheckedChange={(checked) => setIncludeLowercase(checked as boolean)}
             />
-            Lowercase
-          </label>
-          <label>
-            <input
-              type="checkbox"
+            <Label htmlFor="lowercase">Lowercase</Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Checkbox
+              id="numbers"
               checked={includeNumbers}
-              onChange={(e) => setIncludeNumbers(e.target.checked)}
+              onCheckedChange={(checked) => setIncludeNumbers(checked as boolean)}
             />
-            Numbers
-          </label>
-          <label>
-            <input
-              type="checkbox"
+            <Label htmlFor="numbers">Numbers</Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Checkbox
+              id="symbols"
               checked={includeSymbols}
-              onChange={(e) => setIncludeSymbols(e.target.checked)}
+              onCheckedChange={(checked) => setIncludeSymbols(checked as boolean)}
             />
-            Symbols
-          </label>
-        </fieldset>
+            <Label htmlFor="symbols">Symbols</Label>
+          </div>
+        </div>
 
-        <button onClick={generatePassword}>Generate Password</button>
+        <Button onClick={generatePassword} className="w-full">Generate Password</Button>
 
-        <label>
-          Generated Password
-          <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-            <input type="text" readOnly value={password} style={{ flex: 1, margin: 0 }} />
-            <button
+        <div className="flex flex-col gap-2">
+          <Label>Generated Password</Label>
+          <div className="flex gap-2 items-center w-full">
+            <Input type="text" readOnly value={password} className="flex-1" />
+            <Button
               onClick={() => copyToClipboard(password, setCopied)}
               disabled={!password}
-              style={{ width: "auto", margin: 0 }}
+              variant="outline"
+              className="w-auto"
             >
               {copied ? "Copied!" : "Copy"}
-            </button>
+            </Button>
           </div>
-        </label>
+        </div>
 
         {history.length > 0 && (
-          <div style={{ marginTop: "16px" }}>
-            <h5 style={{ marginBottom: "8px" }}>History (Last 30 Days)</h5>
-            <ul style={{ listStyleType: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
+          <div className="mt-4">
+            <h5 className="mb-4 text-lg font-semibold">History (Last 30 Days)</h5>
+            <ul className="flex flex-col gap-2 p-0 m-0 list-none">
               {history.map((item, index) => (
-                <li key={index} style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-                  <input type="text" readOnly value={item.password} style={{ flex: 1, margin: 0 }} />
-                  <button
+                <li key={index} className="flex gap-2 items-center w-full">
+                  <Input type="text" readOnly value={item.password} className="flex-1" />
+                  <Button
                     onClick={() => copyToClipboard(item.password)}
-                    style={{ width: "auto", margin: 0 }}
+                    variant="ghost"
+                    className="w-auto border border-border"
                   >
                     Copy
-                  </button>
+                  </Button>
                 </li>
               ))}
             </ul>
