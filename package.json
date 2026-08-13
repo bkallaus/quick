@@ -46,9 +46,11 @@
     "@types/jest": "^30.0.0",
     "@vitejs/plugin-react": "^6.0.5",
     "autoprefixer": "^10.5.4",
+    "jsdom": "^29.1.1",
     "postcss": "^8.5.26",
     "tailwindcss": "^4.3.3",
-    "vite": "^8.2.1"
+    "vite": "^8.2.1",
+    "vitest": "^4.1.10"
   },
   "overrides": {
     "underscore": "1.13.8",
