@@ -18,6 +18,7 @@ const navItems = [
   { href: '#px-to-rem', label: 'Px to Rem' },
   { href: '#lorem-ipsum-generator', label: 'Lorem Ipsum Generator' },
   { href: '#url-parser', label: 'URL Parser' },
+  { href: '#random-number-generator', label: 'Random Number Generator' },
 ];
 
 const NavLinks = ({ onClick }: { onClick?: () => void }) => (
