@@ -1,0 +1,28 @@
+PR Title: feat: Roman Numeral Converter
+
+The Problem Solved: Adds a robust two-way converter for Roman Numerals and Arabic numbers (1-3999), filling a utility gap in the Quick Calculations suite.
+
+Visuals: UI Screenshot verified locally matching existing tool design patterns.
+
+Implementation Journey:
+* Verified no existing duplicate features via git branch -a.
+* Assessed and documented Standard, Minimalist, and Creative design paths.
+* Selected Standard (two inputs, two-way bound) for UX consistency.
+* Created Roman Numeral Converter component in src/components/roman-numeral-converter.tsx.
+* Built comprehensive test suite covering valid conversions, invalid structures, and bounds checking.
+* Integrated component into App.tsx and side-nav.tsx.
+* Verified backend test passing and performed Playwright frontend verification.
+
+Tradeoffs & Assumptions:
+* Assumption: Users want two-way conversion without needing to click a 'convert' button.
+* Tradeoff: Chose a straightforward iterative subtraction algorithm over complex math, prioritizing readability and exact bounds (1-3999 standard Roman limits).
+* Brainstorming: Standard (two-way), Minimalist (auto-detect input), Lateral (slider). Standard was chosen because auto-detect input creates UX ambiguity for a user trying to learn conversions, and a slider is impractical for 3999 numbers.
+
+Testing Instructions:
+1. Navigate to the local server or deployed URL.
+2. Scroll to or click 'Roman Numeral Converter' in the sidebar.
+3. Enter a number (e.g., 2024) in the left input; observe 'MMXXIV' on the right.
+4. Clear the right input, enter 'MCMXCIX'; observe '1999' on the left.
+5. Attempt out of bounds numbers (0, 4000) or invalid characters (ABC) to view inline error messaging.
+
+Action Item: git push origin feature/roman-numeral-converter && gh pr create --title "feat: Roman Numeral Converter" --body-file .nova_manifest.md
