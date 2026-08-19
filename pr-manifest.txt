@@ -1,0 +1,26 @@
+PR Title: feat: Date Difference Calculator
+
+The Problem Solved: Adds a minimalist calculator to quickly determine the exact difference between two dates in days, weeks, months, and years without needing to count on a calendar.
+
+Visuals:
+- Screenshot: [verification.png](/home/jules/verification/screenshots/verification.png)
+- Video: [video.webm](/home/jules/verification/videos/2bbd70af4b510aab17f0471784dd99cd.webm)
+
+Implementation Journey:
+- Designed a lightweight React component utilizing the existing Tailwind/shadcn UI library (Card, Label, Input).
+- Implemented dependency-free date arithmetic using native JS `Date` objects.
+- Wrote a comprehensive vitest suite to verify calculations (including leap year approximations and reverse chronological ordering).
+- Integrated the component into the main application layout and sidebar navigation.
+- Verified functionality locally and via automated Playwright UI tests.
+
+Tradeoffs & Assumptions:
+- I assumed the user wanted a lightweight tool, so I chose a Minimalist approach using native HTML5 date inputs and raw JS date math rather than importing a heavy third-party library like `date-fns` (Standard approach) or using unconventional units (Lateral approach). The tradeoff is slight approximation on months/years, but it preserves optimal bundle size.
+
+Testing Instructions:
+1. Run `npm install` and `npm start` to launch the local dev server.
+2. Navigate to `http://localhost:5173/quick/` and scroll to the bottom (or click "Date Difference" in the left nav).
+3. Select a Start Date and End Date using the native browser calendar pickers.
+4. Verify the results instantly appear below, displaying the difference in Days, Weeks, Months, and Years.
+5. Run `npm test` and verify `src/components/date-difference.test.tsx` passes successfully.
+
+Action Item: git push origin feature/date-difference && gh pr create --title "feat: Date Difference Calculator" --body-file pr-manifest.txt

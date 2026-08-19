@@ -1,0 +1,12 @@
+# Internal Logs
+
+**Assumptions & Confusion:**
+No specific feature was requested, so I am autonomously inventing one: Date Difference Calculator. I assume native HTML5 `<input type="date">` is sufficient to avoid adding dependency weight. I assume we want absolute difference between dates.
+
+**Handling Multiple Interpretations & 3 Approaches:**
+1. Standard: Add a date manipulation library like `date-fns` for accurate, robust date math. (Heavier)
+2. Minimalist: Use native JS `Date` objects, calculating raw days and mathematically approximating weeks, months, and years. (Simplest, zero dependencies)
+3. Lateral/Creative: Calculate time difference in unconventional units like 'heartbeats' or 'dog years' to stand out. (Maybe too distracting)
+
+**Rationale & Selection:**
+I choose the **Minimalist** approach. It fulfills the functional need for "Quick Calculations" without adding third-party bloat or over-engineering the logic. I will use native `Math.abs` and division for days, weeks, months (~30.44 days), and years (~365.24 days) for a fast, simple approximation.
