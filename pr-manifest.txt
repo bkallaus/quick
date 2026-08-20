@@ -1,0 +1,27 @@
+PR Title: feat: Proportion Calculator tool
+
+The Problem Solved: Added a robust proportion calculator that mathematically solves for any missing 4th variable in a proportional relationship (A/B = C/X), handling algebraic re-arrangement and edge cases like zero division safely.
+
+Visuals: [Proportion Calculator Screenshot](proportion_calculator_screenshot.png) (Captured locally via Playwright during CI verification).
+
+Implementation Journey:
+- Built the React component `ProportionCalculator` utilizing local shadcn `Input`, `Button`, and `Card` components.
+- Engineered dynamic algebraic logic to solve for X, A, B, or C depending on user input gaps.
+- Handled floating-point numbers, missing value constraints, and division-by-zero validation.
+- Wired the tool into the main `App.tsx` container and added a navigation link to `side-nav.tsx`.
+- Wrote full unit test coverage using Vitest/Testing Library to ensure all calculation permutations map correctly.
+- Created Playwright script to verify UI works as expected on the frontend build.
+
+Tradeoffs & Assumptions:
+- Evaluated 3 paths: Standard 2x2 grid, Minimalist NLP string parser, and Lateral visual sliders.
+- Chose the Standard path because it perfectly mimics the conventional mathematical notation of fractions, creating the most intuitive user experience for this exact problem without brittle parsing logic.
+- Assumed values must be strictly numeric (integers or decimals) and explicitly guarded against zero division to prevent UI crashes.
+
+Testing Instructions:
+1. Run `npm run dev` or `npm start`.
+2. Scroll to the bottom of the tools or click "Proportion Calculator" in the side navigation.
+3. Enter `10` for A, `2` for B, and `20` for C.
+4. Click Calculate. X should automatically compute to `4`.
+5. Clear the fields and try calculating for A instead to verify algebraic inversion works.
+
+Action Item: `git push origin feature/proportion-calculator && gh pr create --title "feat: Proportion Calculator tool" --body-file pr-manifest.txt`
