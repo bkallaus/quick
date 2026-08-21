@@ -1,0 +1,31 @@
+Phase 1: Pre-Flight Check
+Checked `git branch -a`. Remote branches show many features like aspect-ratio, csv-to-json, etc.
+I have decided to implement a "Mortgage Calculator" feature. This does not duplicate any existing feature branch.
+
+Phase 2: Think Before Coding
+Assumptions: User wants a simple, single-page React component to calculate monthly mortgage payments based on principal, interest rate, and term.
+Interpretations/Variance:
+1. Standard Approach: A form with inputs for Principal, Rate, and Term, and a card displaying the Monthly Payment, Total Interest, and Total Payment.
+2. Minimalist Approach: Just two inputs (Loan amount, monthly payment) to calculate how long it takes to pay off.
+3. Lateral/Creative Approach: A visual amortization schedule with charts.
+
+Chosen Approach: Standard Approach. It provides the most immediate value for a "quick calculations" app without over-complicating the UI or requiring charting libraries (Simplicity First).
+
+PR Title: feat: Mortgage Calculator
+The Problem Solved: Adds a simple, single-page React component to calculate monthly mortgage payments based on principal, interest rate, and term, providing immediate value for quick calculations without over-complicating the UI.
+Visuals: [Screenshot](mortgage-calculator-screenshot.png)
+Implementation Journey:
+- Verified no existing duplicate feature branch exists.
+- Chose a Standard Approach (form inputs with card display) over minimal or charting approaches for simplicity.
+- Created `src/components/mortgage-calculator.tsx` utilizing standard Math formulas for mortgage calculations.
+- Added test coverage in `src/components/mortgage-calculator.test.tsx` verifying default calculations and dynamic updates.
+- Appended the tool to `src/components/side-nav.tsx` and mounted it in `src/App.tsx`.
+- Validated UI rendering using a Playwright script.
+Tradeoffs & Assumptions:
+- Assumption: The user wants a standard calculator with three basic inputs (Loan Amount, Interest Rate, Loan Term in Years) rather than an overly complex one with down payment, PMI, and taxes.
+- Tradeoff: Forgoing an amortization schedule chart to strictly adhere to the Simplicity First rule and avoid pulling in heavy charting dependencies for a "quick calculation".
+Testing Instructions:
+1. Run `npm test` to verify unit tests pass.
+2. Run `npm start` to launch the app.
+3. Open `http://localhost:5173/quick/` in the browser, scroll to the Mortgage Calculator, and input standard values (e.g., $300k, 5%, 30 yrs) to verify the expected monthly payment ($1,610.46) is displayed.
+Action Item: gh pr create --title "feat: Mortgage Calculator" --body-file plan-logs.txt
