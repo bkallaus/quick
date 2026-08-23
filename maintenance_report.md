@@ -1,0 +1,4 @@
+- **Target:** shadcn (4.17.0 -> 4.19.0)
+- **Rationale:** Feature updates and bug fixes (minor release)
+- **Verification:** Confirmed via lockfile and successful `npm run build`.
+- **Changelog Link:** https://github.com/shadcn-ui/ui/releases
