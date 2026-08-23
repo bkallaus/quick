@@ -1,0 +1,35 @@
+Assumptions:
+- We need a net-new developer utility tool.
+- A keycode tester is a highly requested tool by web developers to understand KeyboardEvents.
+
+Three Architectural Approaches:
+1. Standard: Listen to keydown events on a focused element or the window and display the event properties (key, code, keyCode, modifiers) in a structured grid.
+2. Minimalist: Just display the keyCode prominently in the center of the screen, with smaller text for key and code.
+3. Lateral/Creative: A virtual keyboard that lights up the key pressed, alongside the event details.
+
+Chosen Approach:
+Standard. It provides the most value for a developer tool by clearly listing all relevant properties (key, code, keyCode, modifiers) without the overhead of rendering a full virtual keyboard (which would take too much code and goes against the "Simplicity First" rule).
+
+PR Title: feat: Keycode Tester
+
+The Problem Solved: Developers need a way to quickly identify Javascript KeyboardEvent properties (like keyCode, code, key, and modifiers) to implement accurate keyboard handling logic in their applications. This utility provides an instant, visual feedback loop for key presses.
+
+Visuals: [Screenshot](screenshot.png)
+
+Implementation Journey:
+- Created KeycodeTester component to listen to window keydown events.
+- Created tests for KeycodeTester.
+- Integrated KeycodeTester into App.tsx and side-nav.tsx.
+- Added Playwright screenshot testing and fixed global accessibility regression.
+
+Tradeoffs & Assumptions:
+- Assumed standard approach over virtual keyboard to minimize code footprint and adhere to simplicity.
+- Bound the keydown listener to the `window` to ensure events are captured globally without requiring explicit focus on an input field. Intentionally omitted `e.preventDefault()` to ensure normal application keyboard accessibility is maintained.
+
+Testing Instructions:
+1. Pull the branch.
+2. Run `npm start`.
+3. Navigate to the Keycode Tester section.
+4. Press any key on your keyboard and observe the displayed properties.
+
+Action Item: git push -u origin feature/keycode-tester

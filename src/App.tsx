@@ -14,6 +14,7 @@ import ColorContrast from "./components/color-contrast";
 import LoremIpsum from "./components/lorem-ipsum";
 import UrlParser from "./components/url-parser";
 import WordCounter from "./components/word-counter";
+import KeycodeTester from "./components/keycode-tester";
 import SideNav from "./components/side-nav";
 import "./App.css";
 
@@ -42,6 +43,7 @@ export default function App() {
           <div id="lorem-ipsum-generator"><LoremIpsum /></div>
           <div id="url-parser"><UrlParser /></div>
           <div id="word-counter"><WordCounter /></div>
+          <div id="keycode-tester"><KeycodeTester /></div>
         </div>
       </main>
     </div>
