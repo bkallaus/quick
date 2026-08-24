@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "@fontsource-variable/geist";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark, .dark *));
 
 .app-layout {
   display: flex;
@@ -75,6 +75,7 @@
 }
 
 :root {
+  color-scheme: light;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -110,6 +111,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -152,5 +154,44 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Baseline for every theme change (browsers without the View Transitions API, or
+     one with no click origin — e.g. the OS flipping under a "System" preference):
+     a soft cross-fade instead of an instant colour snap. Harmless alongside the
+     view-transition below — it doesn't run during that animation's frozen-DOM
+     snapshot phase, and there's nothing left to fade once it hands back control. */
+  *,
+  *::before,
+  *::after {
+    transition:
+      background-color 200ms ease,
+      border-color 200ms ease,
+      color 200ms ease,
+      fill 200ms ease,
+      stroke 200ms ease;
+  }
+
+  /* Chromium/Safari: reveal the new theme as a circle expanding from the toggle
+     that was clicked, rather than swapping instantly. */
+  ::view-transition-old(root) {
+    animation: none;
+  }
+  ::view-transition-new(root) {
+    animation: theme-reveal 500ms ease;
+    mix-blend-mode: normal;
+  }
+
+  @keyframes theme-reveal {
+    from {
+      clip-path: circle(0 at var(--theme-toggle-x, 50%) var(--theme-toggle-y, 50%));
+    }
+    to {
+      clip-path: circle(
+        var(--theme-toggle-radius, 150%) at var(--theme-toggle-x, 50%) var(--theme-toggle-y, 50%)
+      );
+    }
   }
 }

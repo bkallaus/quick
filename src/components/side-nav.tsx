@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
+import ThemeToggle from './theme-toggle';
 
 const navItems = [
   { href: '#shareable-list', label: 'Shareable List' },
@@ -97,14 +98,17 @@ const SideNav = () => {
       >
         <div className="flex items-center justify-between p-4 border-b border-border">
           <span className="text-sm font-semibold text-foreground">Navigation</span>
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            onClick={closeMobile}
-            aria-label="Close navigation menu"
-          >
-            <X className="size-4" />
-          </Button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              onClick={closeMobile}
+              aria-label="Close navigation menu"
+            >
+              <X className="size-4" />
+            </Button>
+          </div>
         </div>
         <nav className="p-3">
           <NavLinks onClick={closeMobile} />
@@ -113,6 +117,9 @@ const SideNav = () => {
 
       {/* Desktop sidebar */}
       <aside className="side-nav hidden md:block w-64 shrink-0 border-r border-border min-h-screen p-4 bg-muted/30">
+        <div className="mb-3 flex justify-center">
+          <ThemeToggle />
+        </div>
         <nav>
           <NavLinks />
         </nav>
