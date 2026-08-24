@@ -24,6 +24,7 @@
     "predeploy": "npm run build",
     "start": "vite",
     "build": "vite build",
+    "build:preview": "NODE_ENV=preview vite build",
     "preview": "vite preview",
     "test": "vitest run"
   },
