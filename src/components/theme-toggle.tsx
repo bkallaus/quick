@@ -9,7 +9,7 @@ const options: { value: Theme; label: string; Icon: typeof Sun }[] = [
 ];
 
 const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, setThemeAnimated } = useTheme();
 
   return (
     <div
@@ -26,7 +26,9 @@ const ThemeToggle = () => {
           title={label}
           variant={theme === value ? 'secondary' : 'ghost'}
           size="icon-sm"
-          onClick={() => setTheme(value)}
+          onClick={(e) =>
+            setThemeAnimated(value, { x: e.clientX, y: e.clientY })
+          }
         >
           <Icon />
         </Button>

@@ -1,7 +1,13 @@
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ThemeToggle from '../components/theme-toggle';
-import { getStoredTheme, resolveTheme, setTheme, THEME_STORAGE_KEY } from './theme';
+import {
+  getStoredTheme,
+  resolveTheme,
+  setTheme,
+  setThemeAnimated,
+  THEME_STORAGE_KEY,
+} from './theme';
 
 type Listener = () => void;
 
@@ -72,6 +78,68 @@ describe('theme', () => {
       setTheme('light');
       expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe('light');
       expect(isDark()).toBe(false);
+    });
+  });
+
+  describe('setThemeAnimated', () => {
+    const mockReducedMotion = (matches: boolean) => {
+      window.matchMedia = ((query: string) => ({
+        matches: query.includes('reduced-motion') ? matches : false,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+      })) as unknown as typeof window.matchMedia;
+    };
+
+    afterEach(() => {
+      delete (document as { startViewTransition?: unknown }).startViewTransition;
+      document.documentElement.style.removeProperty('--theme-toggle-x');
+      document.documentElement.style.removeProperty('--theme-toggle-y');
+      document.documentElement.style.removeProperty('--theme-toggle-radius');
+    });
+
+    it('falls back to a plain switch when the API is unsupported', () => {
+      setThemeAnimated('dark', { x: 10, y: 10 });
+      expect(isDark()).toBe(true);
+    });
+
+    it('falls back to a plain switch with no origin, even if supported', () => {
+      const startViewTransition = vi.fn();
+      (document as { startViewTransition?: unknown }).startViewTransition =
+        startViewTransition;
+
+      setThemeAnimated('dark');
+      expect(isDark()).toBe(true);
+      expect(startViewTransition).not.toHaveBeenCalled();
+    });
+
+    it('falls back to a plain switch under reduced motion', () => {
+      mockReducedMotion(true);
+      const startViewTransition = vi.fn();
+      (document as { startViewTransition?: unknown }).startViewTransition =
+        startViewTransition;
+
+      setThemeAnimated('dark', { x: 10, y: 10 });
+      expect(isDark()).toBe(true);
+      expect(startViewTransition).not.toHaveBeenCalled();
+    });
+
+    it('drives the change through startViewTransition and sets the reveal origin', () => {
+      mockReducedMotion(false);
+      const startViewTransition = vi.fn((cb: () => void) => {
+        cb();
+        return { ready: Promise.resolve() };
+      });
+      (document as { startViewTransition?: unknown }).startViewTransition =
+        startViewTransition;
+
+      setThemeAnimated('dark', { x: 42, y: 7 });
+
+      expect(startViewTransition).toHaveBeenCalledTimes(1);
+      expect(isDark()).toBe(true);
+      const style = document.documentElement.style;
+      expect(style.getPropertyValue('--theme-toggle-x')).toBe('42px');
+      expect(style.getPropertyValue('--theme-toggle-y')).toBe('7px');
+      expect(style.getPropertyValue('--theme-toggle-radius')).not.toBe('');
     });
   });
 
