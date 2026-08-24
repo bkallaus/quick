@@ -19,6 +19,7 @@ const navItems = [
   { href: '#lorem-ipsum-generator', label: 'Lorem Ipsum Generator' },
   { href: '#url-parser', label: 'URL Parser' },
   { href: '#word-counter', label: 'Word Counter' },
+  { href: '#slug-generator', label: 'Slug Generator' },
 ];
 
 const NavLinks = ({ onClick }: { onClick?: () => void }) => (
