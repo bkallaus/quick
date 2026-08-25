@@ -20,6 +20,7 @@ const navItems = [
   { href: '#lorem-ipsum-generator', label: 'Lorem Ipsum Generator' },
   { href: '#url-parser', label: 'URL Parser' },
   { href: '#word-counter', label: 'Word Counter' },
+  { href: '#regex-tester', label: 'Regex Tester' },
 ];
 
 const NavLinks = ({ onClick }: { onClick?: () => void }) => (
