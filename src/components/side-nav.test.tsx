@@ -1,34 +1,42 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import SideNav from './side-nav';
+import { toolCategories } from '../lib/tools';
+
+// SideNav mounts NavLinks twice (mobile drawer + desktop sidebar), so every
+// label appears once per nav. Scope queries to a single nav to stay unambiguous.
+const renderNav = () => {
+  render(<SideNav />);
+  return screen.getAllByRole('navigation')[0];
+};
 
 describe('SideNav', () => {
-  test('renders navigation links', () => {
-    render(<SideNav />);
+  test('renders a heading for every category', () => {
+    const nav = renderNav();
 
-    expect(screen.getByText('Shareable List')).toBeInTheDocument();
-    expect(screen.getByText('Percent to Hex')).toBeInTheDocument();
-    expect(screen.getByText('Ml to Cups')).toBeInTheDocument();
-    expect(screen.getByText('Pour Over')).toBeInTheDocument();
-    expect(screen.getByText('QR Code')).toBeInTheDocument();
-    expect(screen.getByText('Iframe Tester')).toBeInTheDocument();
-    expect(screen.getByText('Generate List')).toBeInTheDocument();
-    expect(screen.getByText('Base64 Encoder/Decoder')).toBeInTheDocument();
-    expect(screen.getByText('Password Generator')).toBeInTheDocument();
+    toolCategories.forEach(({ label }) => {
+      expect(within(nav).getByRole('heading', { name: label })).toBeInTheDocument();
+    });
+  });
+
+  test('renders every tool link under its own category', () => {
+    const nav = renderNav();
+
+    toolCategories.forEach((category) => {
+      const list = within(nav).getByRole('list', { name: category.label });
+
+      category.tools.forEach(({ label }) => {
+        expect(within(list).getByText(label)).toBeInTheDocument();
+      });
+    });
   });
 
   test('links have correct href attributes', () => {
-    render(<SideNav />);
+    const nav = renderNav();
 
-    expect(screen.getByText('Shareable List').closest('a')).toHaveAttribute('href', '#shareable-list');
-    expect(screen.getByText('Percent to Hex').closest('a')).toHaveAttribute('href', '#percent-to-hex');
-    expect(screen.getByText('Ml to Cups').closest('a')).toHaveAttribute('href', '#ml-to-cups');
-    expect(screen.getByText('Pour Over').closest('a')).toHaveAttribute('href', '#pour-over');
-    expect(screen.getByText('QR Code').closest('a')).toHaveAttribute('href', '#qr-code');
-    expect(screen.getByText('Iframe Tester').closest('a')).toHaveAttribute('href', '#iframe-tester');
-    expect(screen.getByText('Generate List').closest('a')).toHaveAttribute('href', '#generate-list');
-    expect(screen.getByText('Base64 Encoder/Decoder').closest('a')).toHaveAttribute('href', '#base64-encoder');
-    expect(screen.getByText('Password Generator').closest('a')).toHaveAttribute('href', '#password-generator');
+    toolCategories.flatMap((category) => category.tools).forEach(({ id, label }) => {
+      expect(within(nav).getByText(label).closest('a')).toHaveAttribute('href', `#${id}`);
+    });
   });
 });
