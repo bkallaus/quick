@@ -31,6 +31,18 @@
   }
 }
 
+/* Keep a nav-clicked tool (and, for the first tool in a group, its category
+   heading) off the very top edge of the viewport. */
+.main-content [id] {
+  scroll-margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .main-content [id] {
+    scroll-margin-top: 4rem; /* clears the fixed hamburger button */
+  }
+}
+
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: 'Geist Variable', sans-serif;

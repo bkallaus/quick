@@ -43,7 +43,7 @@ const LoremIpsum = () => {
   };
 
   return (
-    <Card id="lorem-ipsum-generator">
+    <Card>
       <CardHeader>
         <CardTitle className="text-2xl">Lorem Ipsum Generator</CardTitle>
       </CardHeader>

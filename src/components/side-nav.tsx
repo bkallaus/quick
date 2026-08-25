@@ -2,40 +2,31 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
 import ThemeToggle from './theme-toggle';
-
-const navItems = [
-  { href: '#shareable-list', label: 'Shareable List' },
-  { href: '#percent-to-hex', label: 'Percent to Hex' },
-  { href: '#ml-to-cups', label: 'Ml to Cups' },
-  { href: '#pour-over', label: 'Pour Over' },
-  { href: '#qr-code', label: 'QR Code' },
-  { href: '#iframe-tester', label: 'Iframe Tester' },
-  { href: '#generate-list', label: 'Generate List' },
-  { href: '#base64-encoder', label: 'Base64 Encoder/Decoder' },
-  { href: '#password-generator', label: 'Password Generator' },
-  { href: '#timestamp-converter', label: 'Timestamp Converter' },
-  { href: '#unix-permissions', label: 'Unix Permissions' },
-  { href: '#color-contrast', label: 'Color Contrast Checker' },
-  { href: '#px-to-rem', label: 'Px to Rem' },
-  { href: '#lorem-ipsum-generator', label: 'Lorem Ipsum Generator' },
-  { href: '#url-parser', label: 'URL Parser' },
-  { href: '#word-counter', label: 'Word Counter' },
-];
+import { toolCategories } from '../lib/tools';
 
 const NavLinks = ({ onClick }: { onClick?: () => void }) => (
-  <ul className="flex flex-col gap-1 list-none p-0 m-0">
-    {navItems.map(({ href, label }) => (
-      <li key={href}>
-        <a
-          href={href}
-          onClick={onClick}
-          className="block rounded-md px-3 py-2 text-sm text-foreground/80 no-underline transition-colors hover:bg-accent hover:text-foreground"
-        >
-          {label}
-        </a>
-      </li>
+  <div className="flex flex-col gap-4">
+    {toolCategories.map((category) => (
+      <div key={category.id}>
+        <h2 className="px-3 mb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          {category.label}
+        </h2>
+        <ul aria-label={category.label} className="flex flex-col gap-1 list-none p-0 m-0">
+          {category.tools.map(({ id, label }) => (
+            <li key={id}>
+              <a
+                href={`#${id}`}
+                onClick={onClick}
+                className="block rounded-md px-3 py-2 text-sm text-foreground/80 no-underline transition-colors hover:bg-accent hover:text-foreground"
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     ))}
-  </ul>
+  </div>
 );
 
 const SideNav = () => {
