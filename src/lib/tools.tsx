@@ -15,6 +15,7 @@ import TimestampConverter from '../components/timestamp-converter';
 import UnixPermissions from '../components/unix-permissions';
 import UrlParser from '../components/url-parser';
 import WordCounter from '../components/word-counter';
+import CompoundInterest from '../components/compound-interest';
 
 export type Tool = {
   /** Anchor id; also the nav href fragment. */
@@ -78,6 +79,13 @@ export const toolCategories: ToolCategory[] = [
     tools: [
       { id: 'ml-to-cups', label: 'Ml to Cups', Component: MlToCups },
       { id: 'pour-over', label: 'Pour Over', Component: PourOver },
+    ],
+  },
+  {
+    id: 'finance',
+    label: 'Finance',
+    tools: [
+      { id: 'compound-interest', label: 'Compound Interest Calculator', Component: CompoundInterest },
     ],
   },
 ];
