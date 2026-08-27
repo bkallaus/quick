@@ -10,6 +10,7 @@ import PercentToHex from '../components/percent-to-hex';
 import PourOver from '../components/pour-over';
 import PxToRem from '../components/px-to-rem';
 import QrCode from '../components/qr-code';
+import Rot13Encoder from '../components/rot13-encoder';
 import ShareableList from '../components/shareable-list';
 import TimestampConverter from '../components/timestamp-converter';
 import UnixPermissions from '../components/unix-permissions';
@@ -48,6 +49,7 @@ export const toolCategories: ToolCategory[] = [
     label: 'Text & Encoding',
     tools: [
       { id: 'base64-encoder', label: 'Base64 Encoder/Decoder', Component: Base64Encoder },
+      { id: 'rot13-encoder', label: 'ROT13 Encoder', Component: Rot13Encoder },
       { id: 'url-parser', label: 'URL Parser', Component: UrlParser },
       { id: 'word-counter', label: 'Word Counter', Component: WordCounter },
     ],
