@@ -1,0 +1,7 @@
+Goal: Create a "ROT13 Encoder/Decoder" feature.
+Criteria:
+1. Two connected textareas (like Base64Encoder): one for plain text, one for ROT13 encoded text.
+2. Changes to plain text should instantly encode and populate the ROT13 textarea.
+3. Changes to the ROT13 textarea should instantly decode (which is just ROT13 again) and populate the plain text textarea.
+4. Integrate the new component (`Rot13Encoder`) into the application through `src/lib/tools.tsx` in the "Text & Encoding" category.
+5. Provide tests to verify the component renders and correctly encodes/decodes (both lower and upper case, ignores numbers/punctuation).
