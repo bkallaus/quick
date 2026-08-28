@@ -1,0 +1,11 @@
+Phase 2: Think Before Coding
+Task: Create a new feature for the Quick Calculations app that is not duplicated in existing branches.
+Feature Idea: Set Operations (List Comparator) - calculates Union, Intersection, Difference of two lists.
+Architectural Approaches:
+1. Standard: Two input textareas for List A and List B. Four separate output textareas for Union, Intersection, A-B, B-A.
+2. Minimalist: Two input textareas, a select dropdown to choose the operation (Union, Intersection, Difference A-B, Difference B-A), and a single output textarea.
+3. Lateral/Creative: A Venn diagram visualization where hovering over sections displays the respective items. (Overcomplicated for a simple utility).
+
+Selection: Approach 2 (Minimalist). It keeps the UI clean and simple, fitting the "Quick Calculations" theme without overwhelming the user with too many textareas at once.
+
+Update: The UI was broken due to flexbox layout issues inside the `<Container>` component which expects its children to be managed or defaults to a horizontal layout if they are directly inside. Need to wrap the main content in a full-width column layout `div`.
