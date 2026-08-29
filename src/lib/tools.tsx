@@ -15,6 +15,7 @@ import SubnetCalculator from '../components/subnet-calculator';
 import TimestampConverter from '../components/timestamp-converter';
 import UnixPermissions from '../components/unix-permissions';
 import UrlParser from '../components/url-parser';
+import SetOperations from '../components/set-operations';
 import WordCounter from '../components/word-counter';
 
 export type Tool = {
@@ -50,6 +51,7 @@ export const toolCategories: ToolCategory[] = [
     tools: [
       { id: 'base64-encoder', label: 'Base64 Encoder/Decoder', Component: Base64Encoder },
       { id: 'url-parser', label: 'URL Parser', Component: UrlParser },
+      { id: 'set-operations', label: 'Set Operations', Component: SetOperations },
       { id: 'word-counter', label: 'Word Counter', Component: WordCounter },
     ],
   },
