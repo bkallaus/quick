@@ -1,0 +1,4 @@
+- **Target:** lucide-react (1.35.0 -> 1.37.0)
+- **Rationale:** Minor Feature/Bugfix update
+- **Verification:** "Confirmed via lockfile and successful `npm run build`."
+- **Changelog Link:** https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes
