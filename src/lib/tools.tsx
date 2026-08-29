@@ -11,6 +11,7 @@ import PourOver from '../components/pour-over';
 import PxToRem from '../components/px-to-rem';
 import QrCode from '../components/qr-code';
 import ShareableList from '../components/shareable-list';
+import SubnetCalculator from '../components/subnet-calculator';
 import TimestampConverter from '../components/timestamp-converter';
 import UnixPermissions from '../components/unix-permissions';
 import UrlParser from '../components/url-parser';
@@ -70,6 +71,7 @@ export const toolCategories: ToolCategory[] = [
       { id: 'timestamp-converter', label: 'Timestamp Converter', Component: TimestampConverter },
       { id: 'unix-permissions', label: 'Unix Permissions', Component: UnixPermissions },
       { id: 'iframe-tester', label: 'Iframe Tester', Component: IframeTester },
+      { id: 'subnet-calculator', label: 'Subnet Calculator', Component: SubnetCalculator },
     ],
   },
   {
