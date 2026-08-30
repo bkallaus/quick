@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react';
 import Base64Encoder from '../components/base64-encoder';
 import ColorContrast from '../components/color-contrast';
+import CssBoxShadowGenerator from '../components/css-box-shadow-generator';
 import GenerateList from '../components/generate-list';
 import IframeTester from '../components/iframe-tester';
 import LoremIpsum from '../components/lorem-ipsum';
@@ -42,6 +43,7 @@ export const toolCategories: ToolCategory[] = [
       { id: 'percent-to-hex', label: 'Percent to Hex', Component: PercentToHex },
       { id: 'color-contrast', label: 'Color Contrast Checker', Component: ColorContrast },
       { id: 'px-to-rem', label: 'Px to Rem', Component: PxToRem },
+      { id: 'css-box-shadow-generator', label: 'CSS Box Shadow Generator', Component: CssBoxShadowGenerator },
     ],
   },
   {
