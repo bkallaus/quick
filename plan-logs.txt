@@ -1,0 +1,11 @@
+Pre-Flight Check:
+- Evaluated existing tools and branches.
+- No duplicate features for "CSS Box Shadow Generator".
+
+Architectural Approaches for CSS Box Shadow Generator:
+1. Standard: Provide a UI with `Slider`s for horizontal offset, vertical offset, blur radius, and spread radius, plus a color `Input`, updating a preview div in real time, and displaying the generated CSS string with a copy button.
+2. Minimalist: Simple text inputs for the CSS values and a basic preview div.
+3. Lateral/Creative: An interactive UI where users drag a light source to automatically adjust the shadow on a box.
+
+Chosen Path:
+Standard approach. It aligns with existing simple utilities in the app and leverages the newly discovered `Slider` component for a seamless user experience. The generated output will be explicitly copyable via a one-click button.
