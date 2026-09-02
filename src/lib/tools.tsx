@@ -12,6 +12,7 @@ import PxToRem from '../components/px-to-rem';
 import QrCode from '../components/qr-code';
 import ShareableList from '../components/shareable-list';
 import SubnetCalculator from '../components/subnet-calculator';
+import MorseCodeTranslator from '../components/morse-code-translator';
 import TimestampConverter from '../components/timestamp-converter';
 import UnixPermissions from '../components/unix-permissions';
 import UrlParser from '../components/url-parser';
@@ -49,6 +50,7 @@ export const toolCategories: ToolCategory[] = [
     label: 'Text & Encoding',
     tools: [
       { id: 'base64-encoder', label: 'Base64 Encoder/Decoder', Component: Base64Encoder },
+      { id: 'morse-code-translator', label: 'Morse Code Translator', Component: MorseCodeTranslator },
       { id: 'url-parser', label: 'URL Parser', Component: UrlParser },
       { id: 'word-counter', label: 'Word Counter', Component: WordCounter },
     ],
