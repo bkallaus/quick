@@ -14,6 +14,7 @@ import ShareableList from '../components/shareable-list';
 import SubnetCalculator from '../components/subnet-calculator';
 import TimestampConverter from '../components/timestamp-converter';
 import UnixPermissions from '../components/unix-permissions';
+import UnitPriceCalculator from '../components/unit-price-calculator';
 import UrlParser from '../components/url-parser';
 import WordCounter from '../components/word-counter';
 
@@ -80,6 +81,7 @@ export const toolCategories: ToolCategory[] = [
     tools: [
       { id: 'ml-to-cups', label: 'Ml to Cups', Component: MlToCups },
       { id: 'pour-over', label: 'Pour Over', Component: PourOver },
+      { id: 'unit-price-calculator', label: 'Unit Price Calculator', Component: UnitPriceCalculator },
     ],
   },
 ];
