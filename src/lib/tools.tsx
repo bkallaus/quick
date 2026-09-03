@@ -13,6 +13,7 @@ import QrCode from '../components/qr-code';
 import ShareableList from '../components/shareable-list';
 import SubnetCalculator from '../components/subnet-calculator';
 import TimestampConverter from '../components/timestamp-converter';
+import SvgPlaceholderGenerator from '../components/svg-placeholder-generator';
 import UnixPermissions from '../components/unix-permissions';
 import UrlParser from '../components/url-parser';
 import WordCounter from '../components/word-counter';
@@ -62,6 +63,7 @@ export const toolCategories: ToolCategory[] = [
       { id: 'lorem-ipsum-generator', label: 'Lorem Ipsum Generator', Component: LoremIpsum },
       { id: 'generate-list', label: 'Generate List', Component: GenerateList },
       { id: 'shareable-list', label: 'Shareable List', Component: ShareableList },
+      { id: 'svg-placeholder-generator', label: 'SVG Placeholder Generator', Component: SvgPlaceholderGenerator },
     ],
   },
   {
