@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { vi, describe, beforeEach, afterEach, test, expect } from 'vitest';
 import PasswordGenerator from './password-generator';
 
 describe('PasswordGenerator', () => {
@@ -10,23 +11,27 @@ describe('PasswordGenerator', () => {
     // Mock clipboard API
     Object.assign(navigator, {
       clipboard: {
-        writeText: jest.fn().mockImplementation(() => Promise.resolve()),
+        writeText: vi.fn().mockImplementation(() => Promise.resolve()),
       },
     });
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test('renders generator UI', () => {
     render(<PasswordGenerator />);
     expect(screen.getByText('Password Generator')).toBeInTheDocument();
     expect(screen.getByLabelText('Length')).toBeInTheDocument();
-    expect(screen.getByLabelText('Uppercase')).toBeInTheDocument();
-    expect(screen.getByLabelText('Lowercase')).toBeInTheDocument();
-    expect(screen.getByLabelText('Numbers')).toBeInTheDocument();
-    expect(screen.getByLabelText('Symbols')).toBeInTheDocument();
+
+    // There are multiple checkmarks (one visual span + one actual hidden checkbox input per label)
+    // We get the actual checkboxes to check presence.
+    expect(screen.getByRole('checkbox', { name: 'Uppercase' })).toBeInTheDocument();
+    expect(screen.getByRole('checkbox', { name: 'Lowercase' })).toBeInTheDocument();
+    expect(screen.getByRole('checkbox', { name: 'Numbers' })).toBeInTheDocument();
+    expect(screen.getByRole('checkbox', { name: 'Symbols' })).toBeInTheDocument();
+
     expect(screen.getByRole('button', { name: 'Generate Password' })).toBeInTheDocument();
     expect(screen.getByLabelText('Generated Password')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Copy' })).toBeInTheDocument();
@@ -56,10 +61,10 @@ describe('PasswordGenerator', () => {
   test('generates empty password when no options are selected', () => {
     render(<PasswordGenerator />);
 
-    const uppercase = screen.getByLabelText('Uppercase');
-    const lowercase = screen.getByLabelText('Lowercase');
-    const numbers = screen.getByLabelText('Numbers');
-    const symbols = screen.getByLabelText('Symbols');
+    const uppercase = screen.getByRole('checkbox', { name: 'Uppercase' });
+    const lowercase = screen.getByRole('checkbox', { name: 'Lowercase' });
+    const numbers = screen.getByRole('checkbox', { name: 'Numbers' });
+    const symbols = screen.getByRole('checkbox', { name: 'Symbols' });
 
     fireEvent.click(uppercase);
     fireEvent.click(lowercase);
@@ -116,5 +121,30 @@ describe('PasswordGenerator', () => {
     expect(stored).toHaveLength(2);
     expect(stored[0].password).toBe(pass2);
     expect(stored[1].password).toBe(pass1);
+  });
+
+  test('removes a password from history', () => {
+    render(<PasswordGenerator />);
+    const button = screen.getByRole('button', { name: 'Generate Password' });
+
+    // Generate two passwords
+    fireEvent.click(button);
+    fireEvent.click(button);
+
+    // Initial state: 1 main output + 2 history outputs = 3 textboxes
+    expect(screen.getAllByRole('textbox')).toHaveLength(3);
+
+    const removeButtons = screen.getAllByRole('button', { name: 'Remove password' });
+    expect(removeButtons).toHaveLength(2);
+
+    // Remove the first history item
+    fireEvent.click(removeButtons[0]);
+
+    // After removal: 1 main output + 1 history output = 2 textboxes
+    expect(screen.getAllByRole('textbox')).toHaveLength(2);
+
+    // Verify localStorage updated
+    const stored = JSON.parse(localStorage.getItem('passwordHistory') || '[]');
+    expect(stored).toHaveLength(1);
   });
 });

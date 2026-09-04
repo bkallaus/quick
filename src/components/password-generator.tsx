@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Checkbox } from "./ui/checkbox";
+import { Trash2 } from "lucide-react";
 
 interface PasswordHistoryItem {
   password: string;
@@ -56,6 +57,18 @@ const PasswordGenerator = () => {
         console.error("Failed to save password history", e);
       }
       return validHistory;
+    });
+  }, []);
+
+  const removeFromHistory = useCallback((indexToRemove: number) => {
+    setHistory((prev) => {
+      const newHistory = prev.filter((_, index) => index !== indexToRemove);
+      try {
+        localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory));
+      } catch (e) {
+        console.error("Failed to update password history", e);
+      }
+      return newHistory;
     });
   }, []);
 
@@ -113,8 +126,9 @@ const PasswordGenerator = () => {
       <h4 className="w-full text-center mb-0 text-xl font-semibold">Password Generator</h4>
       <div className="w-full flex flex-col gap-6 mt-4">
         <div className="flex flex-col gap-2">
-          <Label>Length</Label>
+          <Label htmlFor="length-input">Length</Label>
           <Input
+            id="length-input"
             type="number"
             min={1}
             max={128}
@@ -161,9 +175,9 @@ const PasswordGenerator = () => {
         <Button onClick={generatePassword} className="w-full">Generate Password</Button>
 
         <div className="flex flex-col gap-2">
-          <Label>Generated Password</Label>
+          <Label htmlFor="generated-password">Generated Password</Label>
           <div className="flex gap-2 items-center w-full">
-            <Input type="text" readOnly value={password} className="flex-1" />
+            <Input id="generated-password" type="text" readOnly value={password} className="flex-1" />
             <Button
               onClick={() => copyToClipboard(password, setCopied)}
               disabled={!password}
@@ -181,13 +195,21 @@ const PasswordGenerator = () => {
             <ul className="flex flex-col gap-2 p-0 m-0 list-none">
               {history.map((item, index) => (
                 <li key={index} className="flex gap-2 items-center w-full">
-                  <Input type="text" readOnly value={item.password} className="flex-1" />
+                  <Input aria-label={`History password ${index + 1}`} type="text" readOnly value={item.password} className="flex-1" />
                   <Button
                     onClick={() => copyToClipboard(item.password)}
                     variant="ghost"
                     className="w-auto border border-border"
                   >
                     Copy
+                  </Button>
+                  <Button
+                    onClick={() => removeFromHistory(index)}
+                    variant="ghost"
+                    className="w-auto border border-border text-destructive hover:text-destructive hover:bg-destructive/10"
+                    aria-label="Remove password"
+                  >
+                    <Trash2 className="size-4" />
                   </Button>
                 </li>
               ))}
