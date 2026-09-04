@@ -3,6 +3,7 @@ import Base64Encoder from '../components/base64-encoder';
 import ColorContrast from '../components/color-contrast';
 import GenerateList from '../components/generate-list';
 import IframeTester from '../components/iframe-tester';
+import CsvToMarkdown from '../components/csv-to-markdown';
 import LoremIpsum from '../components/lorem-ipsum';
 import MlToCups from '../components/ml-to-cups';
 import PasswordGenerator from '../components/password-generator';
@@ -71,6 +72,7 @@ export const toolCategories: ToolCategory[] = [
       { id: 'timestamp-converter', label: 'Timestamp Converter', Component: TimestampConverter },
       { id: 'unix-permissions', label: 'Unix Permissions', Component: UnixPermissions },
       { id: 'iframe-tester', label: 'Iframe Tester', Component: IframeTester },
+      { id: 'csv-to-markdown', label: 'CSV to Markdown', Component: CsvToMarkdown },
       { id: 'subnet-calculator', label: 'Subnet Calculator', Component: SubnetCalculator },
     ],
   },
