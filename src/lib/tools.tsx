@@ -14,6 +14,7 @@ import ShareableList from '../components/shareable-list';
 import SubnetCalculator from '../components/subnet-calculator';
 import TimestampConverter from '../components/timestamp-converter';
 import UnixPermissions from '../components/unix-permissions';
+import WebsiteMetaTagTester from '../components/website-meta-tag-tester';
 import UrlParser from '../components/url-parser';
 import WordCounter from '../components/word-counter';
 
@@ -72,6 +73,7 @@ export const toolCategories: ToolCategory[] = [
       { id: 'unix-permissions', label: 'Unix Permissions', Component: UnixPermissions },
       { id: 'iframe-tester', label: 'Iframe Tester', Component: IframeTester },
       { id: 'subnet-calculator', label: 'Subnet Calculator', Component: SubnetCalculator },
+      { id: 'website-meta-tag-tester', label: 'Website Meta Tag Tester', Component: WebsiteMetaTagTester },
     ],
   },
   {
