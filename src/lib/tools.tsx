@@ -12,6 +12,7 @@ import PxToRem from '../components/px-to-rem';
 import QrCode from '../components/qr-code';
 import ShareableList from '../components/shareable-list';
 import SubnetCalculator from '../components/subnet-calculator';
+import MetaTagsGenerator from '../components/meta-tags-generator';
 import TimestampConverter from '../components/timestamp-converter';
 import UnixPermissions from '../components/unix-permissions';
 import UrlParser from '../components/url-parser';
@@ -72,6 +73,7 @@ export const toolCategories: ToolCategory[] = [
       { id: 'unix-permissions', label: 'Unix Permissions', Component: UnixPermissions },
       { id: 'iframe-tester', label: 'Iframe Tester', Component: IframeTester },
       { id: 'subnet-calculator', label: 'Subnet Calculator', Component: SubnetCalculator },
+      { id: 'meta-tags-generator', label: 'Meta Tags Generator', Component: MetaTagsGenerator },
     ],
   },
   {
