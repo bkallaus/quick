@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react';
 import Base64Encoder from '../components/base64-encoder';
+import BinaryTextConverter from '../components/binary-text-converter';
 import ColorContrast from '../components/color-contrast';
 import GenerateList from '../components/generate-list';
 import IframeTester from '../components/iframe-tester';
@@ -49,6 +50,7 @@ export const toolCategories: ToolCategory[] = [
     label: 'Text & Encoding',
     tools: [
       { id: 'base64-encoder', label: 'Base64 Encoder/Decoder', Component: Base64Encoder },
+      { id: 'binary-text-converter', label: 'Binary Text Converter', Component: BinaryTextConverter },
       { id: 'url-parser', label: 'URL Parser', Component: UrlParser },
       { id: 'word-counter', label: 'Word Counter', Component: WordCounter },
     ],
